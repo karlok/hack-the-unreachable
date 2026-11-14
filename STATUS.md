@@ -15,12 +15,18 @@ Clock: about noon, demo 3:30, submissions due 3:15. Karlo relays between Claude 
 - Templates load: core (19 sections), genres, 7 platforms.
 - Flashpoint docs reachable and summarized in `docs/flashpoint-notes.md`.
 
+## Built
+- Mix skeleton (Req 0.7.5, Jason 1.4). `mix test` passes (3 tests).
+- `DoneFirst.Claude`: Messages API over Req, `claude-opus-5-5`, JSON-schema outputs, refusal fallbacks on. Live call verified.
+- `DoneFirst.Cache` (disk JSON under `cache/`) and `DoneFirst.Panel` (cache-first, shells out to `claude -p` with `mcp__flashpoint` tools allowed).
+- `DoneFirst.Dotenv` loads `.env`. `priv/templates/web_direct.json` (6 sections, 27 items).
+
 ## Open
 1. Organizers' email: confirms the OAuth path?
-2. Smoke test not run yet. Karlo: `! claude mcp add --transport http flashpoint https://api.flashpoint.ai/mcp`, then `/mcp` to log in and pick a team.
+2. Flashpoint MCP is registered for the repo folder only (shows "Needs authentication"). Karlo: start `claude` in the repo folder, `/mcp`, log in, pick a team. Then run the smoke test.
 3. Can personas be experts ("BabylonJS web game developers")? Undocumented. The smoke test answers it.
 4. `panel run` on an existing panel: docs say unsupported, llms.txt lists it. Plan on `create_and_run` each time.
 
 ## Next
 1. Smoke test: a 2-question survey on a 3-persona panel. Record latency, response shape, persona realism. Save to `cache/`.
-2. Meanwhile: Mix skeleton, `web_direct` platform template, Claude client, cached `DoneFirst.Panel`.
+2. Interview loop: load core + Roguelite + web_direct, Claude picks the next question and drops sections, print what was dropped.

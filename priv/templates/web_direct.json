@@ -1,0 +1,71 @@
+{
+  "note": "Done First platform template. Same shape as entries in dod_platform_templates.json. Written for this project; not part of the original question bank.",
+  "key": "web_direct",
+  "label": "Browser (BabylonJS), direct to player",
+  "description": "A browser game built on BabylonJS, hosted on your own site and sold directly to players without a storefront or app store.",
+  "additional_sections": [
+    {
+      "key": "web_hosting",
+      "label": "Web: Hosting and Delivery",
+      "items": [
+        {"key": "static_hosting", "description": "Static hosting and CDN chosen (e.g. Cloudflare Pages, Netlify, S3 + CloudFront), with HTTPS and a custom domain; WebGL, audio and storage APIs need a secure context"},
+        {"key": "download_budget", "description": "Initial download budget set (e.g. under 20 MB before first playable frame) and measured on a throttled connection; players bounce from a long first load"},
+        {"key": "compression", "description": "Brotli or gzip compression configured for JS, WASM and JSON, with correct Content-Type and Content-Encoding headers; misconfigured WASM MIME types break streaming compile"},
+        {"key": "cache_busting", "description": "Asset versioning and cache headers decided (hashed filenames, long max-age, short-lived index.html) so updates reach players without stale-cache bugs"},
+        {"key": "loading_screen", "description": "Loading screen with real progress shown while assets stream in, and a visible error state if loading fails"}
+      ]
+    },
+    {
+      "key": "web_browser_support",
+      "label": "Web: Browser and Device Support",
+      "items": [
+        {"key": "browser_matrix", "description": "Supported browser matrix written down (Chrome, Firefox, Safari desktop, Safari iOS, Chrome Android) with minimum versions, and an unsupported-browser message"},
+        {"key": "render_backend", "description": "Render backend decided: WebGL2 baseline, WebGPU optional; fallback behavior defined when a device lacks WebGPU or has a blocklisted GPU"},
+        {"key": "audio_unlock", "description": "Audio unlock on first user gesture handled; browsers block autoplay audio until the player interacts"},
+        {"key": "input_methods", "description": "Input methods defined: keyboard and mouse, gamepad (Gamepad API), and touch if mobile browsers are in scope"},
+        {"key": "fullscreen_focus", "description": "Fullscreen, pointer lock, tab-hidden pause and window resize behavior defined and tested"}
+      ]
+    },
+    {
+      "key": "web_babylon",
+      "label": "Web: BabylonJS Build and Assets",
+      "items": [
+        {"key": "engine_version", "description": "BabylonJS version pinned, with a plan for engine upgrades mid-project"},
+        {"key": "asset_formats", "description": "Asset pipeline formats fixed: glTF/GLB for models, KTX2/Basis for textures, Draco or meshopt compression; exporter and settings documented"},
+        {"key": "perf_budget", "description": "Performance budget set on a named low-end target device: frame rate, draw calls, texture memory, JS heap"},
+        {"key": "bundling", "description": "Build and bundling set up (e.g. Vite) with tree-shaken Babylon imports and a reproducible production build command"}
+      ]
+    },
+    {
+      "key": "web_save_data",
+      "label": "Web: Save Data",
+      "items": [
+        {"key": "save_storage", "description": "Save storage chosen (localStorage, IndexedDB, or server-side accounts) with its size limits understood"},
+        {"key": "save_eviction", "description": "Browser storage eviction handled: Safari can clear script-writable storage after days without a visit, and private browsing may not persist at all; players are warned or saves are backed up"},
+        {"key": "save_format_versioning", "description": "Save format versioned with a migration path so updates do not corrupt existing saves"},
+        {"key": "save_export", "description": "Save export and import (or cloud save) offered so players can move between browsers and devices"}
+      ]
+    },
+    {
+      "key": "web_direct_sales",
+      "label": "Web: Selling Direct to Players",
+      "items": [
+        {"key": "checkout_provider", "description": "Checkout provider chosen (e.g. Stripe, Paddle, Lemon Squeezy); a merchant of record handles VAT and sales tax for you"},
+        {"key": "entitlement", "description": "Purchase entitlement defined: how a paying player unlocks the game (account login, license key, signed token) and how it survives a cleared browser"},
+        {"key": "demo_paywall", "description": "Free demo vs paid content boundary defined, and enforced server-side if piracy matters"},
+        {"key": "refunds_support", "description": "Refund policy and support contact published; payment providers require one"},
+        {"key": "legal_pages", "description": "Privacy policy, terms of sale and cookie consent in place for analytics and payments (GDPR, CCPA)"}
+      ]
+    },
+    {
+      "key": "web_launch",
+      "label": "Web: Discovery and Launch",
+      "items": [
+        {"key": "landing_page", "description": "Landing page with trailer or GIF, screenshots, price and a play button above the fold"},
+        {"key": "share_metadata", "description": "Open Graph and Twitter card metadata set so shared links show an image and title"},
+        {"key": "analytics", "description": "Privacy-respecting analytics for funnel steps: page view, load complete, first play, purchase"},
+        {"key": "error_reporting", "description": "Client error reporting (e.g. Sentry) with WebGL context-lost and out-of-memory errors captured"}
+      ]
+    }
+  ]
+}
