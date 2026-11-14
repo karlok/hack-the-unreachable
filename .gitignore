@@ -8,3 +8,11 @@ erl_crash.dump
 *.beam
 /config/*.secret.exs
 .elixir_ls/
+
+# Secrets and local caches
+.env
+.env.*
+/cache/
+
+# Local Claude Code skills (kept out of the public repo)
+/.claude/skills/

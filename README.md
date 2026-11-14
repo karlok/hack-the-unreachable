@@ -1,2 +1,6 @@
 # hack-the-unreachable
-repo for Flashpoint.AI hackathon
+
+Repo for Flashpoint.AI hackathon
+https://docs.flashpoint.ai/surveys-build
+
+My Elixir build for
