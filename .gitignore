@@ -19,3 +19,6 @@ erl_crash.dump
 
 # ExUnit tmp_dir output
 /tmp/
+
+# macOS
+.DS_Store

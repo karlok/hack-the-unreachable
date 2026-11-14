@@ -40,7 +40,14 @@ Clock: about 12:30 at last update. Submissions due 3:15, demo 3:30. Karlo relays
    - Edge cases decided: interfaces/providers stay (Stripe, Gamepad API, BabylonJS); "caverns" becomes "levels"; "$8" becomes "single low-price purchase" (Karlo can flip this).
    - On stage say "zero removed terms reach the panel, checked by code". Do not say "theft-proof": the scan cannot prove the idea is unguessable from structure.
    - Demo: lead with which whole sections dropped (Multiplayer, etc.), not the percentage (only about 16 to 20% of items drop).
-4. **Next: panel gap review** from `panel_view` (routing line, grid survey, parse), then single-model baseline, then circle back.
+4. **Panel gap review**: done, cached in `cache/review.json` (replays by default). `mix done_first.review [--fresh] [--size 12] [--survey-id S --panel-id P --run-id R]`.
+   - Routing line: "routing to: Solo devs selling BabylonJS browser roguelites direct (12)". Personas are strong experts (shipping history, Stripe/Paddle, WebGL context loss, IndexedDB migrations).
+   - Run ids: survey 2309c0d4-368b-424a-b3a7-9c8bb77f0211, panel 01a1db48-60bd-71b1-a8e5-046f1b4b1c9e, run 01a1db48-60ca-7763-8fe6-e124d1826f0e, job 01a1db47-9579-72b0-86e4-474857ab2279.
+   - GOTCHA: first tool_survey call hung 328 s and hit Claude Code's MCP timeout, but the survey WAS created. The agent then gave up polling 1 s before the job finished. Review now runs in two resumable steps (run, then fetch rows) and refuses to save zero responses.
+   - FINDING: the grid straightlined. Raw Flashpoint data has all 12 personas rating all 10 gaps Critical. Not usable for ranking. Fix if time: forced choice (ranking / "pick the 3 most critical") rerun on the SAME panel via `panel` action `run` with panel_id.
+   - The open answers are the value: rollback plan for bad deploys, save export/backup, purchase recovery after clearing browser data or losing the email, payment webhook failures, crash logging + support contact, supported browser versions, storage blocked/full, long-session memory.
+5. **Baseline**: done, `mix done_first.baseline`, cached `cache/baseline.json`. The single model discriminates on the grid (2 Critical, 6 Important, 2 Nice). Its open answer found different things: audio autoplay, email deliverability (SPF/DKIM), non-QWERTY keys, network failures mid-run, fullscreen/DPR. Overlap with panel: rollback, support contact. Honest framing: the panel is 12 independent voices from a different model family whose repeats signal priority; the baseline is one list. Neither strictly beats the other.
+6. **Next: circle back** (dedupe panel catches against the DoD, gaps to builder, final DoD with trail), then README.
 
 ## Open
 1. Organizers' email: confirms the OAuth path?

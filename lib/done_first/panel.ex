@@ -17,6 +17,9 @@ defmodule DoneFirst.Panel do
 
   Returns `{:ok, envelope, :cached | :live}` where `envelope` is Claude Code's
   JSON output (`"result"`, `"total_cost_usd"`, `"duration_ms"`, ...).
+
+  Options: `:schema` (a JSON schema; the parsed answer lands in
+  `envelope["structured_output"]`), `:cmd` (the binary, for tests).
   """
   def call(key, prompt, opts \\ []) do
     Cache.fetch("panel_" <> key, fn -> run_claude(prompt, opts) end)
@@ -31,13 +34,24 @@ defmodule DoneFirst.Panel do
   end
 
   defp run_claude(prompt, opts) do
-    args = ["-p", prompt, "--output-format", "json", "--allowedTools", @flashpoint_tools]
+    schema_args =
+      case Keyword.get(opts, :schema) do
+        nil -> []
+        schema -> ["--json-schema", Jason.encode!(schema)]
+      end
+
+    args =
+      ["-p", prompt, "--output-format", "json", "--allowedTools", @flashpoint_tools] ++
+        schema_args
+
     cmd = Keyword.get(opts, :cmd, "claude")
 
     # stdin from /dev/null so `claude -p` does not wait on an open pipe.
     {out, code} =
       System.cmd("sh", ["-c", ~s(exec "$0" "$@" < /dev/null), cmd | args],
-        stderr_to_stdout: false
+        stderr_to_stdout: false,
+        # Keep Flashpoint and Claude Code on the subscription login, not the API key.
+        env: [{"ANTHROPIC_API_KEY", nil}]
       )
 
     with 0 <- code,
