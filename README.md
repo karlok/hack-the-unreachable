@@ -27,7 +27,7 @@ The worked example is an indie game (a browser roguelite on BabylonJS, sold dire
   ```
   Then run `/mcp` inside Claude Code, pick `flashpoint`, and authenticate. Flashpoint calls go through headless Claude Code (`claude -p`) on your own sign-in, so this project never signs payments.
 - An Anthropic API key in `.env` as `ANTHROPIC_API_KEY` (optional). Without one, or if the key hits a spend limit, the Claude client falls back to `claude -p`, which is about 3 times slower. Set `DONE_FIRST_BACKEND=cli` to force that path.
-- The question bank. The core and genre templates are read from `../dod-examples/` (`dod_template.json`, `dod_genre_templates.json`). The platform template is in `priv/templates/web_direct.json`.
+- The question bank is included: core and genre templates in `priv/bank/`, the platform template in `priv/templates/web_direct.json`.
 
 ## Running it
 
@@ -133,6 +133,7 @@ lib/done_first/draft.ex         Draft, stripping rule, leak check (pure)
 lib/done_first/review.ex        Routing, survey prompts, tally (pure)
 lib/done_first/circle_back.ex   Catch triage, labels, final DoD (pure)
 lib/mix/tasks/                  One Mix task per step
+priv/bank/                      Core DoD and genre templates (question bank)
 priv/templates/web_direct.json  Platform template: browser game sold direct
 priv/demo/roguelite_facts.md    Fact sheet for the simulated builder
 ```

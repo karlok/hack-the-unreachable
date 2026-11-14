@@ -1,0 +1,1363 @@
+{
+  "note": "Genre-specific DoD sections are additive \u2014 they append additional checklist items to the base dod_template.json. Present the relevant genre section to the developer after they select their genre during ingest. Items here follow the same DoDItem schema: key, description. Priority (V1/V2/N/A) and riskLevel are assigned by the developer during ingest.",
+  "genres": [
+    {
+      "key": "platformer",
+      "label": "Platformer / Action-Platformer",
+      "description": "Side-scrolling or 2D/3D platformers where precise movement and jumping are the primary mechanic.",
+      "additional_sections": [
+        {
+          "key": "platformer_movement",
+          "label": "Platformer: Movement & Feel",
+          "items": [
+            {
+              "key": "coyote_time",
+              "description": "Coyote time implemented \u2014 player can jump briefly after walking off a ledge"
+            },
+            {
+              "key": "jump_buffering",
+              "description": "Jump buffering implemented \u2014 jump input registers when pressed slightly before landing"
+            },
+            {
+              "key": "jump_arc_tuned",
+              "description": "Jump arc, height, and gravity tuned to feel responsive and fair"
+            },
+            {
+              "key": "variable_jump",
+              "description": "Variable jump height (hold to jump higher) implemented correctly (if applicable)"
+            },
+            {
+              "key": "wall_interaction",
+              "description": "Wall jump, wall grab, or wall slide works consistently (if applicable)"
+            },
+            {
+              "key": "double_jump",
+              "description": "Double jump or air jump works correctly and feels intentional (if applicable)"
+            },
+            {
+              "key": "moving_platforms",
+              "description": "Moving platform interactions correct \u2014 player moves with platform, no clipping"
+            },
+            {
+              "key": "collision_accuracy",
+              "description": "Collision detection accurate at all movement speeds \u2014 no tunneling through terrain"
+            }
+          ]
+        },
+        {
+          "key": "platformer_camera",
+          "label": "Platformer: Camera & Death",
+          "items": [
+            {
+              "key": "camera_follow",
+              "description": "Camera follows player smoothly without jarring snaps or boundary clipping"
+            },
+            {
+              "key": "camera_look_ahead",
+              "description": "Camera provides adequate look-ahead in the direction of travel (if applicable)"
+            },
+            {
+              "key": "death_zones",
+              "description": "Death zones (pits, spikes, hazards) trigger correctly and consistently"
+            },
+            {
+              "key": "respawn_fair",
+              "description": "Respawn/checkpoint placement is fair \u2014 player can see what killed them"
+            },
+            {
+              "key": "death_animation",
+              "description": "Death animation and respawn flow are clear and do not block input"
+            }
+          ]
+        },
+        {
+          "key": "platformer_additional",
+          "label": "Platformer: Additional Checks",
+          "items": [
+            {
+              "key": "plat_coyote_time",
+              "description": "Coyote time (grace period after walking off a ledge) tuned and consistent \u2014 player does not feel cheated"
+            },
+            {
+              "key": "plat_jump_buffer",
+              "description": "Jump input buffering implemented \u2014 jump queued slightly before landing registers correctly"
+            },
+            {
+              "key": "plat_variable_jump",
+              "description": "Variable jump height works correctly \u2014 releasing jump early produces a shorter arc (if applicable)"
+            },
+            {
+              "key": "plat_wall_interactions",
+              "description": "Wall sliding, wall jumping, or ledge grabbing behave consistently on all geometry (if applicable)"
+            },
+            {
+              "key": "plat_collision_accuracy",
+              "description": "Collision detection is pixel-accurate or logically consistent \u2014 no invisible walls, no clipping through thin platforms"
+            },
+            {
+              "key": "plat_one_way_platforms",
+              "description": "One-way / drop-through platforms work in all directions \u2014 player can fall through intentionally, not accidentally"
+            },
+            {
+              "key": "plat_moving_platforms",
+              "description": "Moving platforms carry the player correctly \u2014 no jitter, no being pushed through geometry"
+            },
+            {
+              "key": "plat_camera_tracking",
+              "description": "Camera tracks the player smoothly \u2014 no jarring snaps, and look-ahead anticipates movement direction"
+            },
+            {
+              "key": "plat_respawn_fairness",
+              "description": "Respawn / checkpoint placement is fair \u2014 player can see what killed them before respawning into the same hazard"
+            },
+            {
+              "key": "plat_death_types",
+              "description": "All death types (pit, enemy, hazard, crush) trigger the correct death animation, sound, and respawn flow"
+            },
+            {
+              "key": "plat_level_exit",
+              "description": "Level exit / goal is clearly communicated visually \u2014 player knows where to go without a guide"
+            },
+            {
+              "key": "plat_collectible_tracking",
+              "description": "Collectibles tracked per level and globally \u2014 completion percentage accurate (if applicable)"
+            },
+            {
+              "key": "plat_3d_depth_cues",
+              "description": "Depth cues in 3D platformers clearly communicate platform position \u2014 shadow blobs or drop indicators present (if 3D)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "puzzle",
+      "label": "Puzzle",
+      "description": "Games where solving logic, spatial, or mechanical puzzles is the primary activity.",
+      "additional_sections": [
+        {
+          "key": "puzzle_integrity",
+          "label": "Puzzle: Integrity & Solvability",
+          "items": [
+            {
+              "key": "all_puzzles_solvable",
+              "description": "Every puzzle is solvable without external help or guides"
+            },
+            {
+              "key": "no_unsolvable_state",
+              "description": "No puzzle can reach a permanently unsolvable state through normal player actions"
+            },
+            {
+              "key": "puzzle_reset",
+              "description": "Puzzle reset or undo function works correctly and returns to a valid state"
+            },
+            {
+              "key": "no_pixel_hunting",
+              "description": "No pixel-hunting or unintuitive object interactions required to progress"
+            },
+            {
+              "key": "solution_not_obvious",
+              "description": "Solutions are discoverable but not trivially obvious \u2014 difficulty curve verified through playtesting"
+            },
+            {
+              "key": "hint_system",
+              "description": "Hint system or contextual help available for stuck players (if applicable)"
+            },
+            {
+              "key": "puzzle_variety",
+              "description": "Puzzle types are varied enough to avoid feeling repetitive across the full game"
+            }
+          ]
+        },
+        {
+          "key": "puzzle_ux",
+          "label": "Puzzle: UX & Feedback",
+          "items": [
+            {
+              "key": "success_feedback",
+              "description": "Clear feedback when a puzzle is solved \u2014 audio, visual, or both"
+            },
+            {
+              "key": "fail_feedback",
+              "description": "Clear feedback when a wrong action is taken \u2014 player understands why it failed"
+            },
+            {
+              "key": "element_readability",
+              "description": "Puzzle elements are visually distinct and readable \u2014 player can identify interactive objects"
+            }
+          ]
+        },
+        {
+          "key": "puzzle_additional",
+          "label": "Puzzle: Additional Checks",
+          "items": [
+            {
+              "key": "puzzle_solvability",
+              "description": "Every puzzle has been independently verified as solvable \u2014 by a tester who did not design it"
+            },
+            {
+              "key": "puzzle_unique_solution",
+              "description": "Intended solution path verified \u2014 unintended alternate solutions are accepted, blocked, or flagged as intentional"
+            },
+            {
+              "key": "puzzle_undo_history",
+              "description": "Undo history depth is sufficient for the complexity of the puzzle \u2014 does not run out mid-puzzle (if applicable)"
+            },
+            {
+              "key": "puzzle_hint_system",
+              "description": "Hint system provides useful nudges without spoiling the solution \u2014 and does not trigger accidentally (if applicable)"
+            },
+            {
+              "key": "puzzle_skip",
+              "description": "Option to skip or bypass puzzles available for players who are stuck \u2014 with an appropriate cost or unlock (if applicable)"
+            },
+            {
+              "key": "puzzle_state_save",
+              "description": "Puzzle state saves correctly mid-puzzle \u2014 player does not lose progress on quit or crash"
+            },
+            {
+              "key": "puzzle_feedback",
+              "description": "Player receives clear feedback when a puzzle is solved \u2014 distinct audio, visual, and progression signal"
+            },
+            {
+              "key": "puzzle_logic_consistency",
+              "description": "Puzzle mechanics are internally consistent \u2014 what works in one puzzle works the same way in all puzzles using that mechanic"
+            },
+            {
+              "key": "puzzle_tutorial_progression",
+              "description": "Tutorial puzzles teach mechanics in isolation before combining them \u2014 no mechanic first appears in a multi-mechanic context"
+            },
+            {
+              "key": "puzzle_difficulty_ramp",
+              "description": "Puzzle difficulty ramps reviewed \u2014 no sudden spikes that require external walkthroughs to overcome"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "roguelite",
+      "label": "Roguelite / Roguelike",
+      "description": "Games with procedurally generated runs, permadeath (or softdeath), and persistent meta-progression.",
+      "additional_sections": [
+        {
+          "key": "roguelite_run_loop",
+          "label": "Roguelite: Run Loop",
+          "items": [
+            {
+              "key": "run_start_end",
+              "description": "Run start, play, death, and return-to-hub loop complete and smooth"
+            },
+            {
+              "key": "run_length_tuned",
+              "description": "Typical run length is tuned \u2014 not too short to feel meaningless, not too long to feel punishing"
+            },
+            {
+              "key": "run_variety",
+              "description": "Run variety is sufficient \u2014 no single dominant strategy trivializes all runs"
+            },
+            {
+              "key": "item_synergies",
+              "description": "No game-breaking item / ability combination bugs in any achievable combination"
+            },
+            {
+              "key": "seeded_runs",
+              "description": "Seeded run system produces consistent results for same seed (if applicable)"
+            }
+          ]
+        },
+        {
+          "key": "roguelite_meta",
+          "label": "Roguelite: Meta-Progression",
+          "items": [
+            {
+              "key": "meta_persistence",
+              "description": "Meta-progression (unlocks, currency, permanent upgrades) persists correctly between runs"
+            },
+            {
+              "key": "unlock_tracking",
+              "description": "Unlock tracking is accurate \u2014 no double-unlocks or phantom locks"
+            },
+            {
+              "key": "meta_resets_correctly",
+              "description": "Prestige / meta-reset function works correctly and only resets what it should (if applicable)"
+            },
+            {
+              "key": "death_screen_stats",
+              "description": "Death screen displays meaningful run stats \u2014 time, score, progress reached"
+            },
+            {
+              "key": "unlock_preview",
+              "description": "Player can see what they are working toward unlocking (if applicable)"
+            }
+          ]
+        },
+        {
+          "key": "roguelite_additional",
+          "label": "Roguelike: Additional Checks",
+          "items": [
+            {
+              "key": "rogue_seed_reproducibility",
+              "description": "Seeds produce identical runs reliably \u2014 same seed = same layout, enemies, and loot every time (if seeded)"
+            },
+            {
+              "key": "rogue_procedural_solvability",
+              "description": "All procedurally generated layouts are solvable \u2014 no generated runs with unreachable exits or required items"
+            },
+            {
+              "key": "rogue_permadeath_clarity",
+              "description": "Permadeath consequence is clearly communicated before the first run \u2014 no surprise save deletion"
+            },
+            {
+              "key": "rogue_run_persistence",
+              "description": "Mid-run progress saved correctly on quit \u2014 player can resume an in-progress run (if run-resume is supported)"
+            },
+            {
+              "key": "rogue_meta_progression",
+              "description": "Meta-progression unlocks (permanent upgrades, characters, items) save correctly and accumulate between runs"
+            },
+            {
+              "key": "rogue_unlock_balance",
+              "description": "Unlock progression reviewed \u2014 early unlocks are accessible to new players, late unlocks require meaningful effort"
+            },
+            {
+              "key": "rogue_item_synergies",
+              "description": "Item / relic / build synergies tested \u2014 no synergy combination crashes the game or produces infinite loops"
+            },
+            {
+              "key": "rogue_item_pool_balance",
+              "description": "Item pool weighted correctly \u2014 overpowered items are appropriately rare, underpowered items reviewed or removed"
+            },
+            {
+              "key": "rogue_run_variety",
+              "description": "Sufficient item, enemy, and layout variety to make runs feel distinct after 10+ hours of play"
+            },
+            {
+              "key": "rogue_boss_scaling",
+              "description": "Boss difficulty scales appropriately with run depth or floor \u2014 not trivial on early floors or impossible on final"
+            },
+            {
+              "key": "rogue_run_length",
+              "description": "Average run length tested and within design target \u2014 not so short it feels trivial, not so long it becomes exhausting"
+            },
+            {
+              "key": "rogue_early_exit",
+              "description": "Player can abandon a run cleanly at any point \u2014 no forced softlock when a run is clearly lost"
+            },
+            {
+              "key": "rogue_stats_run_summary",
+              "description": "End-of-run stats / summary screen shows meaningful data \u2014 kills, damage, items found, time (if applicable)"
+            },
+            {
+              "key": "rogue_daily_run",
+              "description": "Daily challenge / seeded run mode fully functional and produces fair, consistent seeds (if applicable)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "rpg",
+      "label": "RPG / Adventure",
+      "description": "Role-playing and adventure games with quests, characters, dialogue, and often inventory or progression systems.",
+      "additional_sections": [
+        {
+          "key": "rpg_quests",
+          "label": "RPG: Quests & Narrative",
+          "items": [
+            {
+              "key": "main_story_completable",
+              "description": "All main story path quests completable from start to finish without workarounds"
+            },
+            {
+              "key": "no_quest_soft_lock",
+              "description": "No quest can be permanently failed without explicit notification to the player"
+            },
+            {
+              "key": "side_quests_completable",
+              "description": "All shipped side quests completable without errors or dead ends (if applicable)"
+            },
+            {
+              "key": "dialogue_no_dead_ends",
+              "description": "All dialogue trees reach a conclusion \u2014 no orphaned or dead-end nodes"
+            },
+            {
+              "key": "quest_tracker_accurate",
+              "description": "Quest tracker accurately reflects current objectives at all times"
+            }
+          ]
+        },
+        {
+          "key": "rpg_systems",
+          "label": "RPG: Systems & Entities",
+          "items": [
+            {
+              "key": "inventory_at_capacity",
+              "description": "Inventory management functional at and beyond capacity limits \u2014 no crashes or data loss"
+            },
+            {
+              "key": "all_abilities_functional",
+              "description": "All player abilities, skills, and spells function as described"
+            },
+            {
+              "key": "npc_pathing",
+              "description": "NPC AI and pathfinding work correctly \u2014 NPCs do not get stuck or behave erratically"
+            },
+            {
+              "key": "map_waypoints",
+              "description": "Map and waypoint system is accurate and guides player correctly (if applicable)"
+            },
+            {
+              "key": "save_compatibility",
+              "description": "Save compatibility verified across all major story stages \u2014 no broken saves mid-quest"
+            }
+          ]
+        },
+        {
+          "key": "rpg_additional",
+          "label": "RPG: Additional Checks",
+          "items": [
+            {
+              "key": "rpg_stat_accuracy",
+              "description": "All stat calculations are accurate \u2014 damage, defense, crit, evasion formulas produce the stated results"
+            },
+            {
+              "key": "rpg_level_scaling",
+              "description": "Level / experience curve reviewed and tested \u2014 no degenerate grind walls or trivial power jumps"
+            },
+            {
+              "key": "rpg_skill_tree",
+              "description": "Skill tree / ability system fully functional \u2014 no dead nodes, orphaned skills, or UI inconsistencies"
+            },
+            {
+              "key": "rpg_equipment_system",
+              "description": "Equipment compare, equip, unequip, and drop systems work without data loss or stat errors"
+            },
+            {
+              "key": "rpg_inventory_limits",
+              "description": "Inventory limit behavior is clear and graceful \u2014 player cannot lose items to overflow silently"
+            },
+            {
+              "key": "rpg_quest_tracker",
+              "description": "Quest log accurately reflects all active, completed, and failed quests \u2014 no stale entries"
+            },
+            {
+              "key": "rpg_branching_dialogue",
+              "description": "Branching dialogue trees have been fully traversed in testing \u2014 no dead ends or repeated lines"
+            },
+            {
+              "key": "rpg_faction_reputation",
+              "description": "Faction / reputation system correctly tracks player choices and reflects them in NPC dialogue and behavior (if applicable)"
+            },
+            {
+              "key": "rpg_world_state",
+              "description": "World state changes from major decisions are saved and persist correctly \u2014 NPCs remember player actions"
+            },
+            {
+              "key": "rpg_economy_balance",
+              "description": "Economy balance reviewed \u2014 player is neither perpetually broke nor drowning in currency by midgame"
+            },
+            {
+              "key": "rpg_shop_system",
+              "description": "Shop / merchant UI works correctly \u2014 buying, selling, buying back, and stock refresh all function as designed"
+            },
+            {
+              "key": "rpg_combat_balance",
+              "description": "All combat encounters playtested at expected player level \u2014 no unwinnable encounters in critical path"
+            },
+            {
+              "key": "rpg_status_effects",
+              "description": "All status effects (poison, stun, burn, freeze, etc.) apply, stack, and expire correctly"
+            },
+            {
+              "key": "rpg_party_ai",
+              "description": "Companion AI makes reasonable decisions in combat and exploration (if applicable) \u2014 not suicidally dumb or broken"
+            },
+            {
+              "key": "rpg_endgame",
+              "description": "Post-game / NG+ / endgame content functions correctly and credits play before unlocking (if applicable)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "visual_novel",
+      "label": "Visual Novel / Narrative",
+      "description": "Story-driven games where reading dialogue, making choices, and experiencing narrative are the primary activities.",
+      "additional_sections": [
+        {
+          "key": "vn_routes",
+          "label": "Visual Novel: Routes & Endings",
+          "items": [
+            {
+              "key": "all_routes_reachable",
+              "description": "All routes, paths, and endings are reachable through normal play"
+            },
+            {
+              "key": "all_endings_complete",
+              "description": "All endings are complete \u2014 no truncated or placeholder endings"
+            },
+            {
+              "key": "no_branching_dead_ends",
+              "description": "No branching dead-ends, orphaned dialogue nodes, or infinite loops"
+            },
+            {
+              "key": "endings_tracked",
+              "description": "Endings / route completion tracked correctly in records or gallery (if applicable)"
+            },
+            {
+              "key": "true_end_gateable",
+              "description": "True end or secret ending gating logic works correctly (if applicable)"
+            }
+          ]
+        },
+        {
+          "key": "vn_ux",
+          "label": "Visual Novel: Reading UX",
+          "items": [
+            {
+              "key": "save_any_point",
+              "description": "Save at any dialogue point works correctly and restores accurately"
+            },
+            {
+              "key": "log_backlog",
+              "description": "Dialogue log / backlog is scrollable, accurate, and does not overflow"
+            },
+            {
+              "key": "auto_advance",
+              "description": "Auto-advance (auto-play) function works correctly at a readable speed"
+            },
+            {
+              "key": "skip_seen",
+              "description": "Skip function (skip seen text) works correctly and stops at choices and unseen content"
+            },
+            {
+              "key": "cg_gallery",
+              "description": "CG / scene gallery unlocks correctly and is accessible from main menu (if applicable)"
+            },
+            {
+              "key": "voiced_lines_complete",
+              "description": "All dialogue lines have voice audio \u2014 no missing or silent lines (if voice acted)"
+            }
+          ]
+        },
+        {
+          "key": "visual_novel_additional",
+          "label": "Visual Novel: Additional Checks",
+          "items": [
+            {
+              "key": "vn_dialogue_complete",
+              "description": "All dialogue lines written, proofread, and implemented \u2014 no missing or placeholder text in any route"
+            },
+            {
+              "key": "vn_all_routes_tested",
+              "description": "All story routes and endings reachable and tested \u2014 no orphaned flags or unreachable endings"
+            },
+            {
+              "key": "vn_choice_consequences",
+              "description": "Player choices produce the correct narrative outcomes \u2014 no choice routes to the wrong ending"
+            },
+            {
+              "key": "vn_skip_function",
+              "description": "Skip (fast-forward) function works correctly \u2014 stops at unread text or choices for the current playthrough"
+            },
+            {
+              "key": "vn_auto_advance",
+              "description": "Auto-advance mode advances text at a readable pace and pauses on choices (if applicable)"
+            },
+            {
+              "key": "vn_backlog",
+              "description": "Dialogue backlog is available and scrollable \u2014 allows player to re-read recent lines"
+            },
+            {
+              "key": "vn_scene_gallery",
+              "description": "CG gallery / scene gallery unlocks correctly as scenes are encountered \u2014 no premature or missed unlocks (if applicable)"
+            },
+            {
+              "key": "vn_music_gallery",
+              "description": "Music / sound room unlocks correctly as tracks are heard in-game (if applicable)"
+            },
+            {
+              "key": "vn_chapter_select",
+              "description": "Chapter select or flowchart allows players to replay specific scenes (if applicable)"
+            },
+            {
+              "key": "vn_voiced_lines_synced",
+              "description": "Voiced line timing matches dialogue box text \u2014 no lines finishing before text ends or vice versa (if voice acted)"
+            },
+            {
+              "key": "vn_content_warnings",
+              "description": "Content warnings for mature themes (violence, abuse, mental health, sexual content) displayed before affected scenes"
+            },
+            {
+              "key": "vn_endings_count",
+              "description": "All endings (good, bad, true, route) verified accessible and flagged in save data or gallery (if applicable)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "survival_crafting",
+      "label": "Survival / Crafting",
+      "description": "Games where resource gathering, crafting, base building, and survival mechanics are central.",
+      "additional_sections": [
+        {
+          "key": "survival_crafting_systems",
+          "label": "Survival: Crafting & Resources",
+          "items": [
+            {
+              "key": "all_recipes_functional",
+              "description": "All crafting recipes functional and producing correct output items"
+            },
+            {
+              "key": "resource_respawn",
+              "description": "Resource respawn / regeneration works correctly and at the intended rate"
+            },
+            {
+              "key": "inventory_full_graceful",
+              "description": "Inventory-full state handled gracefully \u2014 no data loss, no silent item drops"
+            },
+            {
+              "key": "crafting_ui_clear",
+              "description": "Crafting UI clearly shows required materials and what is missing"
+            }
+          ]
+        },
+        {
+          "key": "survival_world",
+          "label": "Survival: World & Persistence",
+          "items": [
+            {
+              "key": "world_persistence",
+              "description": "Full world state persists correctly between sessions \u2014 no state loss on load"
+            },
+            {
+              "key": "day_night_cycle",
+              "description": "Day / night cycle integrates correctly with gameplay systems (if applicable)"
+            },
+            {
+              "key": "base_building_collision",
+              "description": "Base building placement and collision work correctly \u2014 no overlap bugs (if applicable)"
+            },
+            {
+              "key": "survival_mechanics_tuned",
+              "description": "Hunger, thirst, health decay, or other survival meters are balanced and clearly communicated"
+            },
+            {
+              "key": "death_penalty_clear",
+              "description": "Death penalty (item loss, respawn point, etc.) is clearly communicated before death"
+            }
+          ]
+        },
+        {
+          "key": "survival_crafting_additional",
+          "label": "Survival / Crafting: Additional Checks",
+          "items": [
+            {
+              "key": "survival_needs_clarity",
+              "description": "Player needs (hunger, thirst, temperature, stamina) are clearly communicated \u2014 player always knows their status"
+            },
+            {
+              "key": "survival_death_fairness",
+              "description": "Death from needs depletion is signaled clearly in advance \u2014 player has meaningful opportunity to respond"
+            },
+            {
+              "key": "survival_inventory_weight",
+              "description": "Inventory weight or space limits are communicated and enforced fairly \u2014 no silent item loss"
+            },
+            {
+              "key": "survival_crafting_ui",
+              "description": "Crafting UI clearly shows required ingredients, quantities, and what will be produced \u2014 no mystery recipes"
+            },
+            {
+              "key": "survival_recipe_discovery",
+              "description": "Recipe discovery system works correctly \u2014 unlocking a recipe adds it to the list immediately and persistently"
+            },
+            {
+              "key": "survival_base_building",
+              "description": "Base building placement snaps correctly, handles terrain, and cannot produce unreachable or broken structures (if applicable)"
+            },
+            {
+              "key": "survival_structure_persistence",
+              "description": "Player-built structures persist correctly across sessions and world chunk loads"
+            },
+            {
+              "key": "survival_world_gen",
+              "description": "World generation produces no unreachable critical resources, broken biome transitions, or degenerate spawn locations"
+            },
+            {
+              "key": "survival_day_night",
+              "description": "Day/night cycle transitions correctly \u2014 lighting, enemy spawns, and temperature changes fire at correct times"
+            },
+            {
+              "key": "survival_respawn_options",
+              "description": "Death respawn options clearly presented \u2014 respawn at bed, world spawn, or fresh start \u2014 with loot recovery rules explained"
+            },
+            {
+              "key": "survival_item_degradation",
+              "description": "Item durability / degradation communicated clearly \u2014 player warned before critical tool breaks mid-task (if applicable)"
+            },
+            {
+              "key": "survival_map_exploration",
+              "description": "World map updates as the player explores \u2014 no permanently blank regions in the explored area"
+            },
+            {
+              "key": "survival_chunk_loading",
+              "description": "Chunk/zone loading is smooth \u2014 no pop-in of enemies or resources within visible range"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "shooter",
+      "label": "Shooter (2D / 3D)",
+      "description": "Games where aiming, shooting, and combat with ranged weapons are the primary mechanic.",
+      "additional_sections": [
+        {
+          "key": "shooter_combat",
+          "label": "Shooter: Combat & Hit Detection",
+          "items": [
+            {
+              "key": "hit_detection_accurate",
+              "description": "Hit detection accurate across all weapon types, angles, and movement speeds"
+            },
+            {
+              "key": "projectile_pooling",
+              "description": "Projectile / bullet pooling implemented \u2014 no memory leak under sustained fire"
+            },
+            {
+              "key": "reticle_accurate",
+              "description": "Reticle or crosshair accurately reflects actual hit detection area"
+            },
+            {
+              "key": "ammo_reload_complete",
+              "description": "Ammo and reload system complete \u2014 no edge cases that allow infinite ammo or lock reload"
+            },
+            {
+              "key": "weapon_switching",
+              "description": "Weapon switching works correctly \u2014 no state confusion between weapons"
+            },
+            {
+              "key": "damage_feedback",
+              "description": "Damage numbers, hit flash, or equivalent feedback visible and accurate (if applicable)"
+            }
+          ]
+        },
+        {
+          "key": "shooter_enemies",
+          "label": "Shooter: Enemy AI & Balance",
+          "items": [
+            {
+              "key": "enemy_pathfinding",
+              "description": "Enemy AI pathfinding and attack patterns work correctly in all map areas"
+            },
+            {
+              "key": "enemy_difficulty_tuned",
+              "description": "Enemy difficulty tuned across all difficulty settings (if applicable)"
+            },
+            {
+              "key": "hitscan_vs_projectile",
+              "description": "Hitscan and projectile weapons behave consistently with their described mechanics"
+            }
+          ]
+        },
+        {
+          "key": "shooter_additional",
+          "label": "Shooter: Additional Checks",
+          "items": [
+            {
+              "key": "fps_mouse_sensitivity",
+              "description": "Mouse sensitivity range is wide enough to accommodate low-sens and high-sens players \u2014 persists across sessions"
+            },
+            {
+              "key": "fps_mouse_smoothing",
+              "description": "Mouse smoothing/acceleration toggle available \u2014 competitive players expect this to be off by default"
+            },
+            {
+              "key": "fps_fov",
+              "description": "Field of view slider available and applies correctly \u2014 range covers at least 60\u2013110 degrees"
+            },
+            {
+              "key": "fps_aim_assist",
+              "description": "Aim assist tuned appropriately for controller players \u2014 toggleable and clearly labeled"
+            },
+            {
+              "key": "fps_crosshair",
+              "description": "Crosshair is accurate to actual shot dispersion \u2014 does not mislead the player about hit likelihood"
+            },
+            {
+              "key": "fps_hit_registration",
+              "description": "Hit registration is accurate and consistent \u2014 no phantom misses or hits at expected ranges"
+            },
+            {
+              "key": "fps_weapon_feedback",
+              "description": "Every weapon has distinct audio, visual recoil, and screen feedback \u2014 player always knows a shot fired"
+            },
+            {
+              "key": "fps_reload",
+              "description": "Reload animations and timings are accurate \u2014 ammo count updates at the correct frame, not before/after"
+            },
+            {
+              "key": "fps_ammo_management",
+              "description": "Ammo UI clearly shows current magazine / reserve \u2014 no ambiguity between mag and total ammo"
+            },
+            {
+              "key": "fps_headbob",
+              "description": "Head bobbing toggle available \u2014 motion sickness mitigation for FPS games"
+            },
+            {
+              "key": "fps_weapon_clipping",
+              "description": "Weapon model does not clip into geometry when the player stands close to walls or corners"
+            },
+            {
+              "key": "fps_nav_mesh",
+              "description": "Enemy AI nav mesh covers all walkable areas \u2014 no enemies getting stuck or pathing into walls"
+            },
+            {
+              "key": "fps_cover_system",
+              "description": "Cover mechanics work correctly \u2014 player snaps in and out cleanly, no stuck states (if applicable)"
+            },
+            {
+              "key": "fps_damage_indicators",
+              "description": "Directional damage indicators clearly show incoming damage direction (if applicable)"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "horror",
+      "label": "Horror",
+      "description": "Games where atmosphere, tension, fear, and psychological or action-horror experiences are the primary focus.",
+      "additional_sections": [
+        {
+          "key": "horror_atmosphere",
+          "label": "Horror: Atmosphere & Tension",
+          "items": [
+            {
+              "key": "lighting_correct",
+              "description": "Lighting and darkness rendering correct \u2014 no unintended light bleed or fully black areas"
+            },
+            {
+              "key": "sound_design_tested",
+              "description": "Sound design tested for intended scare factor \u2014 no accidental comedy from audio bugs"
+            },
+            {
+              "key": "atmosphere_maintained",
+              "description": "Atmosphere and tension maintained throughout \u2014 no unintentional immersion breaks"
+            },
+            {
+              "key": "no_section_trivializable",
+              "description": "No horror section trivializable due to a bug, exploit, or AI failure"
+            }
+          ]
+        },
+        {
+          "key": "horror_systems",
+          "label": "Horror: Scares & AI",
+          "items": [
+            {
+              "key": "jumpscare_timing",
+              "description": "Jump scare timing consistent across playthroughs \u2014 not exploitable or skippable"
+            },
+            {
+              "key": "enemy_unpredictability",
+              "description": "Enemy AI unpredictability verified across multiple playthroughs \u2014 no obvious pattern exploitation"
+            },
+            {
+              "key": "sanity_fear_functional",
+              "description": "Sanity, fear, or psychological mechanics functional and tuned (if applicable)"
+            },
+            {
+              "key": "safe_rooms_work",
+              "description": "Safe rooms, hiding spots, or sanctuary mechanics function correctly (if applicable)"
+            }
+          ]
+        },
+        {
+          "key": "horror_additional",
+          "label": "Horror: Additional Checks",
+          "items": [
+            {
+              "key": "horror_photosensitivity",
+              "description": "Photosensitivity warning displayed prominently at launch \u2014 flashing lights, strobes, or flickering effects present"
+            },
+            {
+              "key": "horror_darkness_calibration",
+              "description": "Brightness calibration screen present \u2014 game is playable in dark scenes without being trivially lit"
+            },
+            {
+              "key": "horror_audio_critical",
+              "description": "All horror cues (jump scare audio, ambient tension, monster sounds) tested on headphones and speakers \u2014 impact not lost"
+            },
+            {
+              "key": "horror_enemy_ai_consistency",
+              "description": "Enemy AI behavior is consistent \u2014 players can learn and predict it through observation, not memorization of random patterns"
+            },
+            {
+              "key": "horror_checkpoint_fairness",
+              "description": "Checkpoint placement is fair \u2014 players do not lose more than 2\u20133 minutes of progress to any single death"
+            },
+            {
+              "key": "horror_resource_scarcity",
+              "description": "Resource scarcity (ammo, healing) balanced \u2014 player can complete the game without perfect play but must ration carefully"
+            },
+            {
+              "key": "horror_content_warnings",
+              "description": "Content warnings for gore, body horror, psychological distress, and mature themes displayed before the game begins"
+            },
+            {
+              "key": "horror_trigger_options",
+              "description": "Option to reduce or disable specific graphic content (gore toggle, jump scare intensity) where feasible (if applicable)"
+            },
+            {
+              "key": "horror_jump_scares_fair",
+              "description": "Jump scares are not placed at save points, unavoidable corridors, or load screens \u2014 they reward player attention"
+            },
+            {
+              "key": "horror_inventory_under_pressure",
+              "description": "Inventory management UI is accessible quickly under pressure \u2014 slow or clunky menus reviewed for tension balance"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "strategy",
+      "label": "Strategy / Tower Defense",
+      "description": "Games where planning, resource management, unit control, and tactical decisions are the primary mechanic.",
+      "additional_sections": [
+        {
+          "key": "strategy_systems",
+          "label": "Strategy: Systems & Units",
+          "items": [
+            {
+              "key": "all_units_functional",
+              "description": "All unit and tower types fully functional with correct stats and behaviors"
+            },
+            {
+              "key": "pathfinding_max_units",
+              "description": "Pathfinding AI works correctly at maximum unit count \u2014 no lag or routing failures"
+            },
+            {
+              "key": "economy_functional",
+              "description": "Resource generation, spending, and economy balanced and correctly implemented"
+            },
+            {
+              "key": "win_loss_conditions",
+              "description": "Win and loss conditions trigger reliably and correctly in all scenarios"
+            },
+            {
+              "key": "ui_information_complete",
+              "description": "UI displays all relevant strategic information at all times \u2014 no hidden or inaccessible data"
+            }
+          ]
+        },
+        {
+          "key": "strategy_performance",
+          "label": "Strategy: Performance & Balance",
+          "items": [
+            {
+              "key": "performance_max_entities",
+              "description": "Performance tested and acceptable at maximum possible entity count"
+            },
+            {
+              "key": "no_dominant_strategy",
+              "description": "No single dominant strategy trivializes all scenarios at any difficulty"
+            },
+            {
+              "key": "difficulty_settings_tuned",
+              "description": "Difficulty settings produce meaningfully different challenges (if applicable)"
+            }
+          ]
+        },
+        {
+          "key": "strategy_additional",
+          "label": "Strategy: Additional Checks",
+          "items": [
+            {
+              "key": "strat_ai_difficulty",
+              "description": "AI difficulty levels tested and accurately labeled \u2014 Easy AI is beatable by new players, Hard AI provides a challenge"
+            },
+            {
+              "key": "strat_ai_cheating",
+              "description": "AI cheating (resource bonuses, fog-of-war omniscience) is disclosed or eliminated \u2014 no invisible unfair advantages on lower difficulties"
+            },
+            {
+              "key": "strat_fog_of_war",
+              "description": "Fog of war reveals and conceals correctly \u2014 no enemy units visible before scouting (if applicable)"
+            },
+            {
+              "key": "strat_resource_balance",
+              "description": "Resource economy playtested at all difficulty levels \u2014 no degenerate opening strategies that trivialize the game"
+            },
+            {
+              "key": "strat_unit_pathfinding",
+              "description": "Unit pathfinding avoids obstacles and does not get stuck \u2014 tested in tight choke points and crowded maps"
+            },
+            {
+              "key": "strat_ui_clarity",
+              "description": "Strategy UI conveys all necessary information \u2014 resource counts, unit stats, territory control clearly readable at a glance"
+            },
+            {
+              "key": "strat_tooltips",
+              "description": "Tooltips on all units, buildings, abilities, and resources are accurate and complete"
+            },
+            {
+              "key": "strat_undo_last_action",
+              "description": "Undo or 'move preview' available to prevent accidental unit moves or build placements (if applicable)"
+            },
+            {
+              "key": "strat_save_mid_mission",
+              "description": "Mid-mission save / load available for long-form strategy missions (if applicable)"
+            },
+            {
+              "key": "strat_tech_tree",
+              "description": "Tech tree / research tree fully implemented \u2014 no orphaned nodes, all prerequisites enforced correctly (if applicable)"
+            },
+            {
+              "key": "strat_win_conditions",
+              "description": "All win and loss conditions trigger correctly \u2014 timed wins, domination, elimination, economic victory all tested"
+            },
+            {
+              "key": "strat_map_variety",
+              "description": "Map variety reviewed \u2014 no single dominant opening strategy that trivializes all maps (if applicable)"
+            },
+            {
+              "key": "strat_performance_late_game",
+              "description": "Performance acceptable in late-game scenarios with maximum units, buildings, and effects on screen simultaneously"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "sports_racing",
+      "label": "Sports / Racing",
+      "description": "Competitive sports or racing games where physics, timing, and opponent AI define the experience.",
+      "additional_sections": [
+        {
+          "key": "sports_physics",
+          "label": "Sports/Racing: Physics & Feel",
+          "items": [
+            {
+              "key": "physics_consistent",
+              "description": "Physics feel consistent and fair across all surfaces, conditions, and vehicles"
+            },
+            {
+              "key": "collision_boundaries",
+              "description": "Track, arena, and boundary collision correct \u2014 no shortcuts or out-of-bounds exploits"
+            },
+            {
+              "key": "all_entities_balanced",
+              "description": "All playable vehicles, characters, or teams balanced and tuned"
+            },
+            {
+              "key": "physics_edge_cases",
+              "description": "Physics edge cases tested \u2014 no game-breaking flips, clips, or stuck states"
+            }
+          ]
+        },
+        {
+          "key": "sports_scoring",
+          "label": "Sports/Racing: Scoring & AI",
+          "items": [
+            {
+              "key": "timer_scoring_accurate",
+              "description": "Timer and scoring system accurate \u2014 no floating point drift or rounding errors"
+            },
+            {
+              "key": "ai_opponents_tuned",
+              "description": "AI opponents tuned across all difficulty settings \u2014 not impossible, not trivial"
+            },
+            {
+              "key": "replay_ghost",
+              "description": "Replay or ghost system functional and accurate (if applicable)"
+            },
+            {
+              "key": "leaderboard",
+              "description": "Leaderboard or high score table functions correctly and persists (if applicable)"
+            }
+          ]
+        },
+        {
+          "key": "sports_racing_additional",
+          "label": "Racing: Additional Checks",
+          "items": [
+            {
+              "key": "race_physics_consistency",
+              "description": "Vehicle physics are consistent \u2014 same inputs produce the same outputs on the same surface every time"
+            },
+            {
+              "key": "race_collision_fairness",
+              "description": "Vehicle collision is fair \u2014 players are not unfairly penalized for being hit by AI or other players"
+            },
+            {
+              "key": "race_ai_rubber_banding",
+              "description": "AI rubber-banding behavior disclosed or removed \u2014 AI does not teleport to stay close to the player"
+            },
+            {
+              "key": "race_lap_tracking",
+              "description": "Lap counter and position tracker are accurate at all times \u2014 no wrong lap counts or position jumps"
+            },
+            {
+              "key": "race_shortcuts_rules",
+              "description": "Off-track shortcuts ruled on \u2014 either blocked, allowed, or penalized consistently"
+            },
+            {
+              "key": "race_finish_line",
+              "description": "Finish line detection is accurate \u2014 no false triggers or missed crossings"
+            },
+            {
+              "key": "race_ghost_replay",
+              "description": "Ghost / replay system records and plays back correctly without desyncing (if applicable)"
+            },
+            {
+              "key": "race_force_feedback",
+              "description": "Force feedback rumble tuned appropriately \u2014 not overpowering, communicates road feel and collisions (if applicable)"
+            },
+            {
+              "key": "race_time_trial",
+              "description": "Time trial / best lap time saving and display works correctly \u2014 times persist across sessions"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "incremental",
+      "label": "Incremental / Idle",
+      "description": "Games where automated resource generation, exponential progression, and long-session loop design are central \u2014 increasingly dominant on Steam and mobile.",
+      "additional_sections": [
+        {
+          "key": "incremental_loop",
+          "label": "Incremental: Core Loop & Progression",
+          "items": [
+            {
+              "key": "increment_loop_works",
+              "description": "Core increment loop works correctly \u2014 resources generate over time at the correct rate"
+            },
+            {
+              "key": "offline_progression",
+              "description": "Offline progression calculates correctly on return \u2014 no overcounting or undercounting"
+            },
+            {
+              "key": "offline_explained",
+              "description": "Offline progress is communicated clearly to the player on return"
+            },
+            {
+              "key": "all_upgrades_functional",
+              "description": "All upgrades and purchased improvements function as described with correct effect"
+            },
+            {
+              "key": "upgrade_interactions",
+              "description": "Upgrade stacking and interactions produce correct compounded results \u2014 no formula errors"
+            }
+          ]
+        },
+        {
+          "key": "incremental_numbers",
+          "label": "Incremental: Number Systems & Prestige",
+          "items": [
+            {
+              "key": "large_number_formatting",
+              "description": "Numbers format correctly at very large values \u2014 1K, 1M, 1B, scientific notation, etc."
+            },
+            {
+              "key": "no_integer_overflow",
+              "description": "No integer or float overflow at achievable max values \u2014 tested at endgame progression"
+            },
+            {
+              "key": "no_negative_resources",
+              "description": "No negative resource values possible from any combination of offline time or upgrades"
+            },
+            {
+              "key": "prestige_resets_correctly",
+              "description": "Prestige / ascension reset function resets exactly what it should \u2014 no data bleed (if applicable)"
+            },
+            {
+              "key": "prestige_incentive_clear",
+              "description": "Prestige benefit is clearly communicated before committing to the reset (if applicable)"
+            }
+          ]
+        },
+        {
+          "key": "incremental_performance",
+          "label": "Incremental: Performance & UX",
+          "items": [
+            {
+              "key": "performance_at_max_upgrades",
+              "description": "Performance acceptable at maximum upgrade count \u2014 no frame drops from calculation load"
+            },
+            {
+              "key": "autosave_frequency",
+              "description": "Autosave frequency appropriate for game speed \u2014 progress not lost on unexpected close"
+            },
+            {
+              "key": "no_idle_drain",
+              "description": "Game does not consume excessive CPU/GPU resources while idle or minimized"
+            },
+            {
+              "key": "milestone_feedback",
+              "description": "Major progression milestones have clear feedback \u2014 player knows when something significant unlocked"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "metroidvania",
+      "label": "Metroidvania",
+      "description": "Games with ability-gated exploration, interconnected maps, and backtracking as a core progression mechanic.",
+      "additional_sections": [
+        {
+          "key": "metroidvania_checklist",
+          "label": "Metroidvania: Checklist",
+          "items": [
+            {
+              "key": "mv_ability_gates",
+              "description": "All ability-gated areas are correctly locked before the ability is acquired and correctly accessible after"
+            },
+            {
+              "key": "mv_sequence_breaking",
+              "description": "Known sequence breaks tested \u2014 either blocked, accepted as intended, or flagged as out-of-scope bugs"
+            },
+            {
+              "key": "mv_map_accuracy",
+              "description": "Map accurately reflects explored and unexplored areas \u2014 all rooms present, no phantom rooms or missing rooms"
+            },
+            {
+              "key": "mv_map_markers",
+              "description": "Player can place custom markers or pins on the map to flag unexplored paths (if applicable)"
+            },
+            {
+              "key": "mv_backtrack_flow",
+              "description": "Backtracking to previously blocked areas is intuitive \u2014 new ability clearly suggests where to use it"
+            },
+            {
+              "key": "mv_fast_travel",
+              "description": "Fast travel system works correctly \u2014 all available stations reachable from all other stations (if applicable)"
+            },
+            {
+              "key": "mv_upgrade_tracking",
+              "description": "Upgrade / collectible tracking is accurate \u2014 map or menu shows what has been collected in each area"
+            },
+            {
+              "key": "mv_100_percent_possible",
+              "description": "100% completion is achievable without missable items \u2014 or missable items are clearly documented in-game"
+            },
+            {
+              "key": "mv_boss_rematches",
+              "description": "Defeated bosses do not respawn and block progression unless by design \u2014 boss rooms are revisitable safely"
+            },
+            {
+              "key": "mv_shortcuts_unlock",
+              "description": "Shortcuts and doors unlocked by progression remain unlocked after load/save \u2014 no re-locking bugs"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "deck_builder",
+      "label": "Deck Builder / Card Game",
+      "description": "Games where building, managing, and playing from a card deck is the primary mechanic.",
+      "additional_sections": [
+        {
+          "key": "deck_builder_checklist",
+          "label": "Deck Builder / Card Game: Checklist",
+          "items": [
+            {
+              "key": "deck_shuffle_rng",
+              "description": "Deck shuffle is truly randomized \u2014 no detectable patterns, seeded reproducibly (if seed-based)"
+            },
+            {
+              "key": "deck_draw_accuracy",
+              "description": "Draw mechanics are accurate \u2014 correct number of cards drawn, no duplicate draws from a single-copy deck"
+            },
+            {
+              "key": "deck_card_interactions",
+              "description": "All card interaction combinations tested \u2014 no edge-case combinations crash the game or produce invalid states"
+            },
+            {
+              "key": "deck_discard_pile",
+              "description": "Discard pile, exile, and hand interactions all function correctly \u2014 cards do not disappear or duplicate"
+            },
+            {
+              "key": "deck_status_effects",
+              "description": "Buffs, debuffs, and persistent effects apply, stack, and expire correctly across turns"
+            },
+            {
+              "key": "deck_ui_clarity",
+              "description": "Card text is readable at all supported resolutions \u2014 all keywords have tooltips"
+            },
+            {
+              "key": "deck_card_animation",
+              "description": "Card draw, play, and discard animations are skippable for players who want faster gameplay"
+            },
+            {
+              "key": "deck_collection_ui",
+              "description": "Card collection, deck editor, and filter UI are functional and usable with all input methods (if applicable)"
+            },
+            {
+              "key": "deck_win_condition",
+              "description": "Win/loss triggers fire correctly \u2014 no premature game-over from card effects, no infinite loops from self-triggering effects"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "key": "fighting",
+      "label": "Fighting / Sports",
+      "description": "Games where direct combat, frame-precise inputs, hitbox accuracy, and competitive balance are the primary mechanic.",
+      "additional_sections": [
+        {
+          "key": "fighting_checklist",
+          "label": "Fighting / Sports: Checklist",
+          "items": [
+            {
+              "key": "fight_input_frame_data",
+              "description": "Frame data for all moves is accurate and consistent \u2014 startup, active, and recovery frames match the stated design"
+            },
+            {
+              "key": "fight_hitbox_accuracy",
+              "description": "Hitboxes and hurtboxes accurately match character visuals \u2014 no invisible hits or unfair whiffs"
+            },
+            {
+              "key": "fight_combo_system",
+              "description": "Combo system registers inputs correctly \u2014 no dropped inputs in fast sequences on all supported controllers"
+            },
+            {
+              "key": "fight_move_list",
+              "description": "In-game move list / command list is accurate and complete \u2014 all moves documented"
+            },
+            {
+              "key": "fight_ai_difficulty",
+              "description": "AI difficulty levels tested \u2014 easy AI is genuinely learnable, hard AI is challenging but fair"
+            },
+            {
+              "key": "fight_score_accuracy",
+              "description": "Score, points, and win condition tracking is accurate \u2014 no incorrect point awards or missed triggers"
+            },
+            {
+              "key": "fight_replay_system",
+              "description": "Match replay system records and plays back accurately \u2014 correct frame-for-frame reproducibility (if applicable)"
+            },
+            {
+              "key": "fight_online_netcode",
+              "description": "Netcode type documented (rollback, delay-based) and latency tolerance tested at documented max ping (if online)"
+            },
+            {
+              "key": "fight_training_mode",
+              "description": "Training / practice mode works correctly \u2014 hitbox display, frame data overlay, reset options all functional (if applicable)"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -8,8 +8,8 @@ defmodule DoneFirst.Bank do
   description is the subsection prompt.
   """
 
-  @core "../dod-examples/dod_template.json"
-  @genres "../dod-examples/dod_genre_templates.json"
+  @core "priv/bank/dod_template.json"
+  @genres "priv/bank/dod_genre_templates.json"
   @platform "priv/templates/web_direct.json"
 
   @doc """

@@ -1,0 +1,1089 @@
+{
+  "sections": [
+    {
+      "key": "unique_content",
+      "label": "Your Game's Unique Content",
+      "note": "Use this section to document what makes your game unique. List your specific mechanics, content scope, characters, and narrative elements. This section informs your risk assessment and vertical slice selection. Items here are freeform \u2014 the system will not generate tasks from this section automatically in v1.",
+      "subsections": [
+        {
+          "key": "core_mechanics",
+          "label": "Core Gameplay Mechanics",
+          "description": "List the primary mechanics that define how your game plays. Each will be assessed for risk and mapped to milestones.",
+          "items_are_freeform": true,
+          "example_items": [
+            "Player movement and jumping",
+            "Enemy AI and combat",
+            "Puzzle interaction and reset system",
+            "Inventory and crafting"
+          ]
+        },
+        {
+          "key": "content_inventory",
+          "label": "Content Inventory",
+          "description": "List all content that must ship in v1.0: levels, stages, scenes, areas, missions, maps, chapters, etc.",
+          "items_are_freeform": true,
+          "example_items": [
+            "5 platformer levels across 2 biomes",
+            "1 tutorial level",
+            "3 boss encounters"
+          ]
+        },
+        {
+          "key": "characters",
+          "label": "Characters & Entities",
+          "description": "List player characters, NPCs, enemies, and other significant entities in scope for v1.0.",
+          "items_are_freeform": true
+        },
+        {
+          "key": "items",
+          "label": "Items, Collectibles & Unlockables",
+          "description": "List items, weapons, abilities, collectibles, power-ups, and unlockables in scope for v1.0.",
+          "items_are_freeform": true
+        },
+        {
+          "key": "narrative",
+          "label": "Story & Narrative Elements",
+          "description": "List story beats, dialogue exchanges, cutscenes, lore, and narrative elements in scope for v1.0.",
+          "items_are_freeform": true
+        }
+      ]
+    },
+    {
+      "key": "core_mechanics_checklist",
+      "label": "Core Mechanics Quality Gates",
+      "items": [
+        {
+          "key": "primary_mechanic_works",
+          "description": "Primary game mechanic functions as designed under all normal conditions"
+        },
+        {
+          "key": "input_responsive",
+          "description": "Input is responsive and consistent across all control schemes"
+        },
+        {
+          "key": "no_soft_locks",
+          "description": "No soft-lock or progression-blocking states reachable through normal play"
+        },
+        {
+          "key": "core_loop_playable",
+          "description": "Core loop is playable without external guidance"
+        },
+        {
+          "key": "failure_retry",
+          "description": "Failure state and retry loop work correctly and return to a valid game state"
+        },
+        {
+          "key": "game_rules_clear",
+          "description": "Game rules and win/loss conditions are communicated clearly to the player"
+        },
+        {
+          "key": "secondary_mechanics_work",
+          "description": "All secondary mechanics integrate with the primary mechanic without conflict or unintended interaction"
+        },
+        {
+          "key": "difficulty_curve",
+          "description": "Difficulty curve validated with external playtesters \u2014 no unintended difficulty spikes or dead zones"
+        },
+        {
+          "key": "game_feel",
+          "description": "Core movement and actions feel good \u2014 juice, weight, and responsiveness match the intended design"
+        },
+        {
+          "key": "edge_case_inputs",
+          "description": "Edge-case inputs tested: rapid presses, held inputs, simultaneous multi-key/button inputs, diagonal movement"
+        }
+      ]
+    },
+    {
+      "key": "boot_init",
+      "label": "Boot & Initialization",
+      "items": [
+        {
+          "key": "engine_logo",
+          "description": "Engine/publisher logo displays correctly (if required by license)"
+        },
+        {
+          "key": "logo_skip",
+          "description": "Logo sequences are skippable after minimum required display time"
+        },
+        {
+          "key": "loads_within_time",
+          "description": "Initial load completes within target time on minimum spec hardware"
+        },
+        {
+          "key": "no_missing_assets",
+          "description": "No missing assets or placeholder content visible at launch"
+        },
+        {
+          "key": "async_loading",
+          "description": "Level loading is async with a visible progress indicator"
+        },
+        {
+          "key": "graceful_failure",
+          "description": "Graceful handling of load failures \u2014 clear error message, no silent hang"
+        },
+        {
+          "key": "first_run_experience",
+          "description": "First-run experience tested on a completely clean machine \u2014 no dependency on prior settings or files"
+        },
+        {
+          "key": "config_file_created",
+          "description": "Config / settings file created correctly on first launch in the expected platform-appropriate location"
+        }
+      ]
+    },
+    {
+      "key": "ftue",
+      "label": "First-Time User Experience (FTUE)",
+      "note": "FTUE covers everything a brand-new player encounters from the moment they launch the game for the first time through their first meaningful gameplay moment. These items are distinct from tutorial content \u2014 FTUE is about friction, trust, and first impressions, not mechanic instruction. Test this section exclusively on people who have never seen the game before.",
+      "items": [
+        {
+          "key": "ftue_time_to_gameplay",
+          "description": "Time from launch to first meaningful player input is within target \u2014 new players are not stuck watching unskippable sequences before they can act"
+        },
+        {
+          "key": "ftue_no_wall_of_text",
+          "description": "No wall-of-text rules explanation before the player has had a chance to touch the game \u2014 information is introduced through play, not upfront reading"
+        },
+        {
+          "key": "ftue_first_impression_tested",
+          "description": "First 5\u201310 minutes tested specifically with first-time players \u2014 their experience observed and documented, not assumed"
+        },
+        {
+          "key": "ftue_first_choice_clear",
+          "description": "The first thing the player is asked to do (move, click, select) is unambiguous \u2014 no new player has been observed ignoring or missing it"
+        },
+        {
+          "key": "ftue_no_premature_complexity",
+          "description": "Complex systems (inventory, skill trees, crafting) are not surfaced until the player has a foothold in the core loop \u2014 no overwhelming menus on session one"
+        },
+        {
+          "key": "ftue_default_settings_sane",
+          "description": "Default settings (volume, resolution, controls) produce a good experience out of the box \u2014 new players should not need to visit settings before enjoying the game"
+        },
+        {
+          "key": "ftue_controller_auto_detected",
+          "description": "Controller is detected and prompts switch automatically on first launch \u2014 a player who plugs in a gamepad before starting sees gamepad glyphs immediately"
+        },
+        {
+          "key": "ftue_name_character_creation",
+          "description": "Character name input and character creation flow are clear, skippable or have sensible defaults, and cannot be entered in a broken state (if applicable)"
+        },
+        {
+          "key": "ftue_difficulty_selection",
+          "description": "Difficulty selection (if present at start) gives enough context for a new player to make an informed choice \u2014 descriptions reflect actual gameplay impact, not vague labels"
+        },
+        {
+          "key": "ftue_save_created_early",
+          "description": "A save file is created or a checkpoint is reached before any sequence a new player might find confusing or want to replay \u2014 no loss of progress from early quit"
+        },
+        {
+          "key": "ftue_onboarding_skippable_on_replay",
+          "description": "Any FTUE-specific sequences, cinematics, or locked menus are skippable or bypassed on subsequent playthroughs \u2014 returning players are not re-onboarded"
+        },
+        {
+          "key": "ftue_no_gear_gate_before_hook",
+          "description": "Player is not required to configure keybindings, create an account, or accept lengthy legal screens before experiencing the game's hook"
+        },
+        {
+          "key": "ftue_hook_delivered",
+          "description": "The core fantasy or emotional hook of the game is delivered within the first session \u2014 a new player can articulate what the game is about after 10\u201315 minutes"
+        },
+        {
+          "key": "ftue_positive_first_outcome",
+          "description": "The game's first designed outcome for the player is a success, not a failure \u2014 new players experience competence before they experience challenge"
+        },
+        {
+          "key": "ftue_audio_on_by_default",
+          "description": "Audio is on and at a reasonable level by default \u2014 new players do not launch to silence and wonder if something is broken"
+        },
+        {
+          "key": "ftue_crash_free_first_session",
+          "description": "FTUE sequence is crash-free across all tested hardware configurations \u2014 a crash in the first 10 minutes is a near-certain refund"
+        }
+      ]
+    },
+    {
+      "key": "title_menu",
+      "label": "Title Screen & Main Menu",
+      "items": [
+        {
+          "key": "game_logo",
+          "description": "Game logo and title art display correctly"
+        },
+        {
+          "key": "press_to_start",
+          "description": "Press to start / any key prompt functions correctly (if applicable)"
+        },
+        {
+          "key": "version_number",
+          "description": "Version number displayed somewhere accessible (main menu or settings screen)"
+        },
+        {
+          "key": "menu_audio_visual",
+          "description": "Background music and visuals loop correctly without interruption or seam"
+        },
+        {
+          "key": "new_game",
+          "description": "New Game / Start functions correctly and consistently"
+        },
+        {
+          "key": "continue_load",
+          "description": "Continue / Load Game functions correctly"
+        },
+        {
+          "key": "options_accessible",
+          "description": "Options / Settings accessible from the main menu"
+        },
+        {
+          "key": "credits_accessible",
+          "description": "Credits screen accessible from the main menu"
+        },
+        {
+          "key": "quit_with_confirm",
+          "description": "Quit with confirmation dialog on all target platforms"
+        },
+        {
+          "key": "menu_controller_nav",
+          "description": "All menu items fully navigable with keyboard, mouse, and gamepad \u2014 no dead-end focus states"
+        },
+        {
+          "key": "no_menu_audio_bleed",
+          "description": "Menu music stops or transitions cleanly when entering gameplay \u2014 no audio bleed"
+        },
+        {
+          "key": "attract_loop",
+          "description": "Attract loop plays automatically after a defined idle period on the title screen, cycles through gameplay or demo footage, and exits cleanly back to the title screen on any input \u2014 with no side effects on game state or audio (applicable to arcade, kiosk, trade show, and living-room console builds; delete for PC/mobile-only releases)"
+        }
+      ]
+    },
+    {
+      "key": "pause_save",
+      "label": "Pause & Save Systems",
+      "items": [
+        {
+          "key": "pause_menu",
+          "description": "Pause menu accessible in all active game states (Resume, Restart, Options, Quit)"
+        },
+        {
+          "key": "pause_freezes",
+          "description": "Pause completely freezes gameplay and audio (or pauses intentionally per design)"
+        },
+        {
+          "key": "autosave",
+          "description": "Autosave occurs at checkpoints or intervals with a visible indicator"
+        },
+        {
+          "key": "save_on_quit",
+          "description": "Save-on-quit behavior is defined, implemented, and communicated to the player"
+        },
+        {
+          "key": "manual_save",
+          "description": "Manual save option available if appropriate for the game's genre (if applicable)"
+        },
+        {
+          "key": "no_save_corruption",
+          "description": "Save file corruption not reproducible under normal or abnormal conditions"
+        },
+        {
+          "key": "continue_from_save",
+          "description": "Continue from save returns player to the correct game state"
+        },
+        {
+          "key": "cloud_save_conflict",
+          "description": "Cloud save conflict resolution handled gracefully (if applicable)"
+        },
+        {
+          "key": "platform_save",
+          "description": "Save files stored in platform-appropriate location"
+        },
+        {
+          "key": "pause_not_abusable",
+          "description": "Pause cannot be used to exploit timing windows, dodge unavoidable damage, or bypass intended challenge"
+        },
+        {
+          "key": "save_slot_ui",
+          "description": "Save slot UI shows useful metadata \u2014 timestamp, play time, level/chapter reached (if applicable)"
+        },
+        {
+          "key": "save_migration",
+          "description": "Save file versioning handled \u2014 older saves load or are migrated gracefully after game updates (if applicable)"
+        }
+      ]
+    },
+    {
+      "key": "settings",
+      "label": "Settings Menu",
+      "items": [
+        {
+          "key": "master_volume",
+          "description": "Master volume control works and persists across sessions"
+        },
+        {
+          "key": "music_volume",
+          "description": "Music volume is independent of SFX volume and persists"
+        },
+        {
+          "key": "sfx_volume",
+          "description": "SFX volume control works and persists"
+        },
+        {
+          "key": "resolution",
+          "description": "Resolution options available and apply correctly on all target platforms"
+        },
+        {
+          "key": "window_mode",
+          "description": "Windowed / fullscreen toggle works on all target platforms"
+        },
+        {
+          "key": "vsync",
+          "description": "VSync toggle available and functional"
+        },
+        {
+          "key": "brightness",
+          "description": "Brightness / gamma adjustment available"
+        },
+        {
+          "key": "motion_blur",
+          "description": "Motion blur toggle available (if applicable)"
+        },
+        {
+          "key": "ui_scale",
+          "description": "UI / HUD scale adjustment available (if applicable)"
+        },
+        {
+          "key": "key_rebinding",
+          "description": "Key rebinding available for keyboard controls"
+        },
+        {
+          "key": "controller_support",
+          "description": "Full controller support on all target platforms"
+        },
+        {
+          "key": "input_hints",
+          "description": "Input hints update automatically to match active input device"
+        },
+        {
+          "key": "language_select",
+          "description": "Language / locale selector available (if supporting multiple languages)"
+        },
+        {
+          "key": "voice_volume",
+          "description": "Voice/dialogue volume control separate from SFX and persists (if voice acted)"
+        },
+        {
+          "key": "frame_rate_cap",
+          "description": "Frame rate cap option available (30 / 60 / 120 / Unlimited) for players with thermal or battery concerns"
+        },
+        {
+          "key": "camera_shake_toggle",
+          "description": "Camera shake toggle or intensity slider available"
+        },
+        {
+          "key": "controller_rebinding",
+          "description": "Controller button rebinding available (if applicable)"
+        },
+        {
+          "key": "settings_reset",
+          "description": "Reset-to-defaults option available in settings \u2014 does not reset save progress"
+        },
+        {
+          "key": "settings_persist",
+          "description": "All settings persist correctly across sessions, restarts, and game updates"
+        }
+      ]
+    },
+    {
+      "key": "accessibility",
+      "label": "Accessibility",
+      "note": "Mark items N/A only if they genuinely do not apply to your game. When in doubt, include \u2014 accessibility features help more players than you expect.",
+      "items": [
+        {
+          "key": "subtitles",
+          "description": "Subtitles or captions available and toggleable for all dialogue and key audio events (if applicable)"
+        },
+        {
+          "key": "subtitle_options",
+          "description": "Subtitle font size and background contrast options available (if subtitles present)"
+        },
+        {
+          "key": "colorblind_mode",
+          "description": "Colorblind mode or alternative color palette available for any color-critical gameplay element"
+        },
+        {
+          "key": "screen_shake_toggle",
+          "description": "Screen shake toggle or intensity slider available"
+        },
+        {
+          "key": "reduced_motion",
+          "description": "Reduced motion option available \u2014 disables non-essential flashing and particle-heavy effects"
+        },
+        {
+          "key": "high_contrast",
+          "description": "High contrast UI option available for improved readability (if applicable)"
+        },
+        {
+          "key": "text_size",
+          "description": "Text size / UI scale option available for all player-visible text"
+        },
+        {
+          "key": "audio_visual_cues",
+          "description": "Critical audio events have visual equivalents for players who may not hear them (if applicable)"
+        },
+        {
+          "key": "subtitle_speaker_labels",
+          "description": "Subtitle speaker names included for conversations with multiple characters (if applicable)"
+        },
+        {
+          "key": "no_photosensitive_hazards",
+          "description": "No uncontrolled rapid flashing exceeding 3Hz in any game state \u2014 or a prominent photosensitivity warning at launch"
+        },
+        {
+          "key": "aim_assist",
+          "description": "Aim assist option available for controller players in games requiring precise targeting (if applicable)"
+        },
+        {
+          "key": "input_timing_assist",
+          "description": "Timing assist or slow-motion option available for time-critical inputs (if applicable)"
+        },
+        {
+          "key": "difficulty_options",
+          "description": "Difficulty settings or custom assist options available \u2014 no shame in supporting all player types"
+        },
+        {
+          "key": "pause_anytime",
+          "description": "Game can be paused at any time during active play (not just at checkpoints)"
+        }
+      ]
+    },
+    {
+      "key": "ui_ux",
+      "label": "UI/UX & Polish",
+      "items": [
+        {
+          "key": "hud_essential_only",
+          "description": "HUD displays only essential information and updates correctly at all times"
+        },
+        {
+          "key": "resource_display",
+          "description": "Resource counters accurate and update correctly in real time"
+        },
+        {
+          "key": "objective_tracker",
+          "description": "Objective / quest tracker visible and accurate (if applicable)"
+        },
+        {
+          "key": "no_ui_clipping",
+          "description": "No UI elements clipped, off-screen, or overlapping at any supported resolution"
+        },
+        {
+          "key": "interactive_feedback",
+          "description": "All interactive UI elements have consistent visual and/or audio feedback"
+        },
+        {
+          "key": "loading_indicators",
+          "description": "Loading indicators present for any operation exceeding one second"
+        },
+        {
+          "key": "keyboard_mouse",
+          "description": "Full keyboard + mouse support with discoverable bindings"
+        },
+        {
+          "key": "gamepad_support",
+          "description": "Full gamepad support on all target platforms"
+        },
+        {
+          "key": "hot_swap",
+          "description": "Input device hot-swap detected and UI updates accordingly"
+        },
+        {
+          "key": "tutorial",
+          "description": "Tutorial or onboarding flow complete and accurate (if applicable)"
+        },
+        {
+          "key": "skip_tutorial",
+          "description": "Tutorial skip option available on repeat play"
+        },
+        {
+          "key": "controls_reference",
+          "description": "In-game controls reference accessible at any time during play"
+        },
+        {
+          "key": "ui_safe_area",
+          "description": "UI respects safe area margins on all target platforms \u2014 nothing critical cut off on TVs or notched screens"
+        },
+        {
+          "key": "feedback_clarity",
+          "description": "Player always knows what happened \u2014 damage numbers, hit confirmation, state changes are communicated clearly"
+        },
+        {
+          "key": "death_screen",
+          "description": "Death / game over screen communicates clearly what happened and what options the player has next"
+        },
+        {
+          "key": "map_minimap",
+          "description": "Map or minimap is accurate and updates in real time as the player explores (if applicable)"
+        },
+        {
+          "key": "inventory_ui",
+          "description": "Inventory / item management UI is functional and readable at all supported resolutions (if applicable)"
+        },
+        {
+          "key": "hud_toggle",
+          "description": "HUD can be toggled off for screenshot mode or player preference (if applicable)"
+        }
+      ]
+    },
+    {
+      "key": "audio_text",
+      "label": "Audio, Text & Dialogue",
+      "items": [
+        {
+          "key": "no_placeholder_audio",
+          "description": "No placeholder or missing audio in any shipping area of the game"
+        },
+        {
+          "key": "no_placeholder_text",
+          "description": "No placeholder text or lorem ipsum visible to players"
+        },
+        {
+          "key": "audio_mix",
+          "description": "Audio mix is acceptable at default settings across all target platforms"
+        },
+        {
+          "key": "no_audio_clipping",
+          "description": "No audio clipping at any volume level"
+        },
+        {
+          "key": "music_loops_clean",
+          "description": "Music loops without an audible seam or gap"
+        },
+        {
+          "key": "relative_audio_levels",
+          "description": "All audio assets mixed at correct relative levels \u2014 SFX does not drown music, etc."
+        },
+        {
+          "key": "dialog_system",
+          "description": "Dialogue system handles all content without errors or dead ends (if applicable)"
+        },
+        {
+          "key": "voiced_subtitles",
+          "description": "All voiced lines have corresponding subtitle text (if voice acted)"
+        },
+        {
+          "key": "audio_3d_spatial",
+          "description": "3D/spatial audio sources attenuate correctly and are positioned accurately (if applicable)"
+        },
+        {
+          "key": "no_audio_stacking",
+          "description": "Audio events do not stack or double-trigger under rapid or repeated player actions"
+        },
+        {
+          "key": "ambient_audio",
+          "description": "Ambient / environmental audio present and appropriate in all shipping areas (if applicable)"
+        },
+        {
+          "key": "sfx_variety",
+          "description": "High-frequency SFX (footsteps, shots, hits) use randomized variation to avoid listener fatigue"
+        }
+      ]
+    },
+    {
+      "key": "localization_text",
+      "label": "Localization & Text Completeness",
+      "note": "Mark all items N/A if releasing in a single language with no localization plans. Even single-language releases should complete the first three items.",
+      "items": [
+        {
+          "key": "no_hardcoded_strings",
+          "description": "All player-visible strings are externalized \u2014 no hardcoded UI text in source code"
+        },
+        {
+          "key": "no_string_truncation",
+          "description": "No string truncation or text overflow at any supported resolution"
+        },
+        {
+          "key": "encoding_correct",
+          "description": "Character encoding is UTF-8 throughout; special characters render correctly"
+        },
+        {
+          "key": "all_text_proofread",
+          "description": "All player-visible text proofread for spelling and grammar in the primary language"
+        },
+        {
+          "key": "locale_formats",
+          "description": "Numbers, dates, and currency display in locale-appropriate format (if multi-locale)"
+        },
+        {
+          "key": "translation_complete",
+          "description": "All strings translated and reviewed for each supported language (if applicable)"
+        },
+        {
+          "key": "font_coverage",
+          "description": "All fonts support the full character set for every target language \u2014 no missing glyphs"
+        },
+        {
+          "key": "rtl_support",
+          "description": "Right-to-left text layout supported for Arabic, Hebrew, or other RTL languages (if applicable)"
+        },
+        {
+          "key": "ui_layout_localized",
+          "description": "UI layout accommodates text expansion for verbose languages (German, Finnish) without overflow"
+        }
+      ]
+    },
+    {
+      "key": "visual_art",
+      "label": "Visual & Art Quality",
+      "items": [
+        {
+          "key": "no_placeholder_art",
+          "description": "No placeholder art, grey-box geometry, or dev-only debug visuals visible in any shipping area"
+        },
+        {
+          "key": "art_style_consistent",
+          "description": "Art style is consistent throughout \u2014 no jarring mismatches in resolution, line weight, or palette"
+        },
+        {
+          "key": "animations_complete",
+          "description": "All characters and interactive objects have complete animation sets \u2014 no T-poses, frozen frames, or missing transitions"
+        },
+        {
+          "key": "no_clipping_geometry",
+          "description": "No player-visible geometry clipping \u2014 character limbs, weapons, or objects do not clip through walls or other entities"
+        },
+        {
+          "key": "vfx_complete",
+          "description": "All VFX (hit sparks, explosions, magic, ambient particles) are complete and final"
+        },
+        {
+          "key": "lighting_consistent",
+          "description": "Lighting is consistent and intentional in all shipping areas \u2014 no unlit black zones or blown-out areas"
+        },
+        {
+          "key": "ui_art_final",
+          "description": "All UI art, icons, and HUD elements are final \u2014 consistent style, correct resolution for target displays"
+        },
+        {
+          "key": "cutscene_quality",
+          "description": "Cutscenes and cinematics are final quality \u2014 correct aspect ratio, no visible seams or pops (if applicable)"
+        },
+        {
+          "key": "resolution_scaling",
+          "description": "Pixel art or texture assets render crisply at all supported resolutions \u2014 no unintended blurring or nearest-neighbor artifacts"
+        }
+      ]
+    },
+    {
+      "key": "performance",
+      "label": "Performance & Stability",
+      "items": [
+        {
+          "key": "frame_rate_target",
+          "description": "Target frame rate maintained in all representative gameplay areas \u2014 tested under worst-case conditions"
+        },
+        {
+          "key": "no_hitches",
+          "description": "No gameplay-disrupting hitches or freezes during normal play"
+        },
+        {
+          "key": "no_frame_pacing",
+          "description": "No persistent micro-stutter or frame pacing issues in gameplay areas"
+        },
+        {
+          "key": "no_memory_leaks",
+          "description": "No detectable memory leaks during a normal play session \u2014 tested over extended play"
+        },
+        {
+          "key": "loading_times_acceptable",
+          "description": "Level / scene load times acceptable on minimum spec hardware \u2014 documented in system requirements"
+        },
+        {
+          "key": "min_spec_tested",
+          "description": "Performance verified on documented minimum specification hardware \u2014 not just development machines"
+        },
+        {
+          "key": "no_vram_overflow",
+          "description": "VRAM usage within safe limits on minimum spec GPU \u2014 no out-of-memory crashes at min settings"
+        },
+        {
+          "key": "cpu_usage_acceptable",
+          "description": "CPU usage at acceptable levels on minimum spec hardware \u2014 no pegging single core to 100%"
+        },
+        {
+          "key": "sleep_resume",
+          "description": "Game recovers gracefully from system sleep / suspend and resume on all target platforms"
+        },
+        {
+          "key": "alt_tab_behavior",
+          "description": "Alt-tab / window focus loss handled correctly \u2014 no crash, audio bleed, or broken state on return"
+        }
+      ]
+    },
+    {
+      "key": "platform_tech",
+      "label": "Platform, Technical & Legal",
+      "items": [
+        {
+          "key": "store_integration",
+          "description": "Platform store integration working \u2014 entitlements, DLC hooks, cloud saves"
+        },
+        {
+          "key": "achievements",
+          "description": "Achievements / trophies trigger correctly and are not exploitable (if applicable)"
+        },
+        {
+          "key": "cloud_saves",
+          "description": "Cloud save sync works correctly across devices (if applicable)"
+        },
+        {
+          "key": "frame_rate_target",
+          "description": "Target frame rate maintained in all representative gameplay areas"
+        },
+        {
+          "key": "no_memory_leaks",
+          "description": "No detectable memory leaks during a normal play session"
+        },
+        {
+          "key": "error_handling",
+          "description": "Unhandled exceptions do not crash to desktop silently \u2014 errors are caught or logged"
+        },
+        {
+          "key": "alt_tab_behavior",
+          "description": "Alt-tab / window focus loss handled correctly on all desktop target platforms"
+        },
+        {
+          "key": "resolution_limits",
+          "description": "Minimum and maximum supported resolutions enforced and tested"
+        },
+        {
+          "key": "clean_uninstall",
+          "description": "Clean uninstall leaves no orphaned files in unexpected system locations"
+        },
+        {
+          "key": "build_automation",
+          "description": "Build pipeline produces valid, testable builds consistently and reproducibly"
+        },
+        {
+          "key": "licenses",
+          "description": "All third-party license requirements met \u2014 fonts, audio, middleware, engine, libraries"
+        },
+        {
+          "key": "content_rating",
+          "description": "Content rating certificate obtained (PEGI, ESRB, etc.) and applied to store page"
+        },
+        {
+          "key": "content_descriptors",
+          "description": "Content descriptor warnings set correctly on all distribution platforms"
+        },
+        {
+          "key": "privacy_policy",
+          "description": "Privacy policy accessible in-game or linked from store page if collecting any user data"
+        },
+        {
+          "key": "eula",
+          "description": "EULA / Terms of Service link accessible if required by platform"
+        },
+        {
+          "key": "credits",
+          "description": "In-game credits complete and accurate \u2014 development team, music, third-party licenses"
+        },
+        {
+          "key": "platform_cert_ready",
+          "description": "All platform certification / submission requirements reviewed and satisfied (Steam, itch.io, console TRC/TCR)"
+        },
+        {
+          "key": "overlay_compatibility",
+          "description": "Platform overlays (Steam, Discord, Xbox Game Bar) do not cause crashes or rendering issues"
+        },
+        {
+          "key": "drm_verified",
+          "description": "DRM integration verified \u2014 game launches and functions correctly on end-user machines (if DRM used)"
+        },
+        {
+          "key": "build_size",
+          "description": "Final build size within stated requirements and documented on the store page"
+        },
+        {
+          "key": "gdpr_compliance",
+          "description": "Data collection and opt-out mechanisms comply with GDPR / CCPA if collecting user data (if applicable)"
+        }
+      ]
+    },
+    {
+      "key": "multiplayer",
+      "label": "Multiplayer & Online Features",
+      "note": "Delete this entire section if your game is single-player only with no online features.",
+      "items": [
+        {
+          "key": "lobby_matchmaking",
+          "description": "Lobby creation, joining, and matchmaking work correctly under all expected conditions"
+        },
+        {
+          "key": "session_persistence",
+          "description": "Game session persists gracefully if one player disconnects \u2014 reconnect or graceful end handled"
+        },
+        {
+          "key": "host_migration",
+          "description": "Host migration works without ending the session when the host disconnects (if peer-to-peer)"
+        },
+        {
+          "key": "latency_handling",
+          "description": "Gameplay is playable and fair at documented maximum supported latency"
+        },
+        {
+          "key": "anticheat",
+          "description": "Anti-cheat or server-authoritative validation in place for competitive modes (if applicable)"
+        },
+        {
+          "key": "profanity_filter",
+          "description": "Profanity filter or name validation in place for user-generated text (usernames, chat, etc.)"
+        },
+        {
+          "key": "moderation_tools",
+          "description": "Report and mute functionality available for player-to-player interactions (if applicable)"
+        },
+        {
+          "key": "server_region",
+          "description": "Server region selection available where latency meaningfully impacts gameplay"
+        },
+        {
+          "key": "offline_mode",
+          "description": "Game launches and functions in offline mode for single-player content if network is unavailable (if applicable)"
+        },
+        {
+          "key": "network_error_handling",
+          "description": "Network errors surface clear messages to the player \u2014 no silent failures or frozen states"
+        },
+        {
+          "key": "leaderboards",
+          "description": "Leaderboards display correctly, update in real time, and are protected from obvious exploits (if applicable)"
+        }
+      ]
+    },
+    {
+      "key": "quality_bar",
+      "label": "Quality Bar",
+      "items": [
+        {
+          "key": "no_critical_bugs",
+          "description": "No known critical bugs: crash, progression block, or data loss"
+        },
+        {
+          "key": "bug_tolerance_defined",
+          "description": "Bug tolerance by severity documented: crash=0, blocker=0, major=max_n defined, minor=unlimited"
+        },
+        {
+          "key": "no_placeholder_art",
+          "description": "No placeholder art or debug visuals visible in the final build"
+        },
+        {
+          "key": "text_no_errors",
+          "description": "All player-visible text is spelled correctly"
+        },
+        {
+          "key": "performance_verified",
+          "description": "Performance targets verified on minimum specification hardware"
+        },
+        {
+          "key": "no_hitches",
+          "description": "No gameplay-disrupting hitches or freezes during normal play"
+        },
+        {
+          "key": "no_frame_pacing",
+          "description": "No persistent micro-stutter or frame pacing issues in gameplay areas"
+        },
+        {
+          "key": "no_known_exploits",
+          "description": "No known game-breaking exploits or unintended progression bypasses"
+        },
+        {
+          "key": "external_playtest_passed",
+          "description": "At least one external playtest completed with people unfamiliar with the game \u2014 findings documented and acted on"
+        },
+        {
+          "key": "full_playthrough_clean",
+          "description": "A complete playthrough from new game to credits completed without hitting any showstopper issues"
+        }
+      ]
+    },
+    {
+      "key": "release",
+      "label": "Release Requirements",
+      "items": [
+        {
+          "key": "store_page_live",
+          "description": "Store page live with all required fields completed"
+        },
+        {
+          "key": "store_tags",
+          "description": "Store tags and categories set correctly to maximize discoverability"
+        },
+        {
+          "key": "pricing_confirmed",
+          "description": "Pricing set correctly and confirmed on all distribution platforms"
+        },
+        {
+          "key": "capsule_images",
+          "description": "Capsule / cover images finalized and meet platform specifications"
+        },
+        {
+          "key": "screenshots",
+          "description": "Minimum 5 screenshots captured, finalized, and uploaded"
+        },
+        {
+          "key": "trailer",
+          "description": "Trailer published and linked on store page"
+        },
+        {
+          "key": "system_requirements",
+          "description": "System requirements listed accurately on store page (tested, not estimated)"
+        },
+        {
+          "key": "build_uploaded",
+          "description": "Final build uploaded and validated on distribution platform"
+        },
+        {
+          "key": "press_keys",
+          "description": "Press / review key distribution plan prepared and keys generated (if applicable)"
+        },
+        {
+          "key": "day1_patch",
+          "description": "Day-1 patch strategy documented; hotfix build pipeline verified"
+        },
+        {
+          "key": "launch_announcement",
+          "description": "Launch announcement drafted and scheduled across all active channels"
+        },
+        {
+          "key": "store_description_quality",
+          "description": "Store description is compelling, spell-checked, and free of lorem ipsum or placeholder text"
+        },
+        {
+          "key": "press_kit",
+          "description": "Press kit prepared with logo, key art, screenshots, trailer link, fact sheet, and contact info"
+        },
+        {
+          "key": "influencer_outreach",
+          "description": "Influencer / content creator outreach plan prepared \u2014 targets identified, pitches drafted"
+        },
+        {
+          "key": "wishlist_conversion",
+          "description": "Steam wishlist notification campaign ready \u2014 launch email will fire to wishlisted users automatically"
+        },
+        {
+          "key": "social_media_scheduled",
+          "description": "Launch day social media posts drafted and scheduled across all active channels"
+        },
+        {
+          "key": "release_date_confirmed",
+          "description": "Release date/time confirmed on all platforms \u2014 embargo lifted, store page set to publish on schedule"
+        }
+      ]
+    },
+    {
+      "key": "prelaunch_testing",
+      "label": "Pre-Launch Testing",
+      "items": [
+        {
+          "key": "fresh_install",
+          "description": "Fresh install test passes on a clean machine with no prior game files"
+        },
+        {
+          "key": "all_menu_paths",
+          "description": "All menu navigation paths tested and verified \u2014 no dead-ends"
+        },
+        {
+          "key": "all_settings",
+          "description": "All settings tested, applied, and persist correctly across sessions"
+        },
+        {
+          "key": "save_load_integrity",
+          "description": "Save / load integrity confirmed across multiple cycles and edge cases"
+        },
+        {
+          "key": "controller_disconnect",
+          "description": "Controller disconnect and reconnect handled gracefully mid-game"
+        },
+        {
+          "key": "min_spec_performance",
+          "description": "Performance verified on documented minimum specification hardware"
+        },
+        {
+          "key": "multiple_resolutions",
+          "description": "UI and gameplay tested at minimum and maximum supported resolutions"
+        },
+        {
+          "key": "alt_tab_test",
+          "description": "Alt-tab / window focus loss tested on all desktop target platforms"
+        },
+        {
+          "key": "external_playtest_signoff",
+          "description": "External playtest completed; sign-off recorded with key findings documented"
+        },
+        {
+          "key": "multiple_controllers",
+          "description": "Multiple simultaneously connected controllers do not cause input confusion (if applicable)"
+        },
+        {
+          "key": "ultrawide_tested",
+          "description": "Ultrawide (21:9) and super-ultrawide (32:9) aspect ratios tested \u2014 no broken UI or gameplay (if supported)"
+        },
+        {
+          "key": "sleep_resume_test",
+          "description": "System sleep and resume tested during active gameplay \u2014 no crash or corrupted state"
+        },
+        {
+          "key": "full_playthrough_test",
+          "description": "Complete playthrough from new game to credits conducted on final build \u2014 no skipped sections"
+        },
+        {
+          "key": "regression_test",
+          "description": "Regression test pass completed after all final fixes \u2014 no new issues introduced by last-minute changes"
+        }
+      ]
+    },
+    {
+      "key": "post_launch_readiness",
+      "label": "Post-Launch Readiness",
+      "items": [
+        {
+          "key": "crash_reporting",
+          "description": "Crash reporting or exception logging integrated and verified \u2014 even minimal or opt-in"
+        },
+        {
+          "key": "hotfix_pipeline",
+          "description": "Hotfix build pipeline tested \u2014 a patch can be produced and deployed within 24 hours"
+        },
+        {
+          "key": "support_channel",
+          "description": "Support or contact channel live and monitored \u2014 email, Discord, itch comments, etc."
+        },
+        {
+          "key": "community_plan",
+          "description": "Community response plan ready \u2014 how will you handle bug reports and reviews at launch?"
+        },
+        {
+          "key": "review_solicitation",
+          "description": "Review solicitation plan in place \u2014 in-game prompt, follow-up email, or similar"
+        },
+        {
+          "key": "faq_prepared",
+          "description": "FAQ or known issues page prepared for common launch-day questions"
+        },
+        {
+          "key": "analytics_monitoring",
+          "description": "Sales, wishlists, and review monitoring set up \u2014 you will know within hours if something is wrong at launch"
+        },
+        {
+          "key": "roadmap_communication",
+          "description": "Post-launch content or patch roadmap communicated to players \u2014 sets expectations and builds goodwill"
+        }
+      ]
+    }
+  ],
+  "_meta": {
+    "version": "2.0.0",
+    "description": "Comprehensive Definition of Done for Indie Game Developers. Designed for deletion \u2014 spend more time removing items that don't apply than adding new ones. Genre-specific sections contain only items unique to that genre; cross-genre items live in the main sections.",
+    "usage": "Work through each section top-to-bottom. Mark items complete, N/A, or deferred. Delete entire sections or items that genuinely do not apply to your game. Add project-specific items where you find gaps."
+  }
+}

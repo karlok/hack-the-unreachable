@@ -1,6 +1,6 @@
 # Done First: status
 
-Brief: `../Done First hackathon brief (v2).md`. Question bank: `../dod-examples/`. Flashpoint notes: `docs/flashpoint-notes.md`.
+Brief: `../Done First hackathon brief (v2).md`. Question bank: `priv/bank/` (copied from `../dod-examples/`). Flashpoint notes: `docs/flashpoint-notes.md`.
 Clock: about 12:30 at last update. Submissions due 3:15, demo 3:30. Karlo relays between Claude Code and Fable Desktop.
 
 ## Resume here (after restart)
