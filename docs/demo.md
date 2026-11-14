@@ -26,12 +26,12 @@ mix done_first.review --fresh --size 12 --out cache/review_live.json
 ## 1. Interview (terminal 1)
 
 ```sh
-mix done_first.interview --facts priv/demo/roguelite_facts.md
+mix done_first.interview --facts priv/demo/roguelite_facts.md --pace 2
 ```
 
 - Shows: 9 questions in 3 batches, a simulated builder's answers, and a `-> dropped N questions: ...` line after each batch. Ends with "Kept 228 items in 27 sections, dropped 58."
 - Point at: the first drop line, `dropped 36 questions: Multiplayer & Online Features (11), ...`. Lead with which whole sections went, not the percentage (only about 20% of items drop).
-- Note: a replay prints everything at once, so scroll back up to Q1 and walk down.
+- Pacing: `--pace 2` pauses 2 s after each "... choosing next questions" and "... builder answering" line and 1 s between questions, so the replay reads like a live run. The whole step takes about 24 s, so narrate over it. Use `--pace 1` (about 12 s) if the script is tight, or drop the flag to print everything at once and scroll back to Q1.
 
 ## 2. Draft and strip (terminal 1)
 
@@ -80,7 +80,7 @@ clear && mix done_first.circle_back
 | Step | On screen | Talk time |
 | --- | --- | --- |
 | 0. Kickoff | instant | 10 s |
-| 1. Interview | instant | 40 s |
+| 1. Interview | about 24 s with `--pace 2` | 40 s |
 | 2. Draft and strip | instant | 40 s |
 | 3. Panel review | instant | 45 s |
 | 4. Baseline | instant | 0 to 15 s |
@@ -91,7 +91,7 @@ About 3 minutes without the baseline.
 ## If something goes wrong
 
 - **A command recompiles or prints warnings first.** Harmless; run it again and it will be instant.
-- **A step prints "... drafting" or "... choosing next questions" and waits.** It is making a live call, which means its cache file is missing. Ctrl-C and move on to the next step; every later step reads its own saved file.
+- **A step prints "... drafting" or "... choosing next questions" and waits much longer than the pace.** It is making a live call, which means its cache file is missing. Ctrl-C and move on to the next step; every later step reads its own saved file.
 - **The kickoff stalls at "Generating personas" or a survey call hangs.** Known Flashpoint behavior (one call hung 328 s in testing). Ignore it. If it errors with "The panel run did not finish", that is the guard working: nothing was saved over the cached run.
 - **The Anthropic API key fails.** The client falls back to `claude -p` on its own. Replays do not call the API at all.
 - **Total failure.** `cache/final_dod.md` is the whole story in one file: trail first, then the DoD.
