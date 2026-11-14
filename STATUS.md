@@ -47,7 +47,11 @@ Clock: about 12:30 at last update. Submissions due 3:15, demo 3:30. Karlo relays
    - FINDING: the grid straightlined. Raw Flashpoint data has all 12 personas rating all 10 gaps Critical. Not usable for ranking. Fix if time: forced choice (ranking / "pick the 3 most critical") rerun on the SAME panel via `panel` action `run` with panel_id.
    - The open answers are the value: rollback plan for bad deploys, save export/backup, purchase recovery after clearing browser data or losing the email, payment webhook failures, crash logging + support contact, supported browser versions, storage blocked/full, long-session memory.
 5. **Baseline**: done, `mix done_first.baseline`, cached `cache/baseline.json`. The single model discriminates on the grid (2 Critical, 6 Important, 2 Nice). Its open answer found different things: audio autoplay, email deliverability (SPF/DKIM), non-QWERTY keys, network failures mid-run, fullscreen/DPR. Overlap with panel: rollback, support contact. Honest framing: the panel is 12 independent voices from a different model family whose repeats signal priority; the baseline is one list. Neither strictly beats the other.
-6. **Next: circle back** (dedupe panel catches against the DoD, gaps to builder, final DoD with trail), then README.
+6. **Circle back**: done. `mix done_first.circle_back [--fresh] [--facts priv/demo/roguelite_facts.md]`, replays `cache/final_dod.json`, writes `cache/final_dod.md` (trail, new items, then full DoD as checkboxes). About 45 s fresh.
+   - 12 catches from the open answers. Labels are computed in code by exact match: NEW (in neither draft nor rated rows, so raised unprompted), "echoes a rated candidate" (primed by the grid), "already in draft".
+   - 5 NEW: corrupted save recovery/backup (5/12), rollback plan (4/12, single model also had it), storage blocked/full (2/12), payment webhook failure (2/12), back-button mid-run (1/12). The builder was asked only these 5; 9 DoD items were added.
+   - Honest demo line: "the panel raised 5 things unprompted that were in neither the draft nor the survey; the single model's own list caught 1 of them." Baseline comparison is shown only on NEW catches (it saw the candidate rows too).
+7. **Next: README**, repo public check, post.
 
 ## Open
 1. Organizers' email: confirms the OAuth path?
