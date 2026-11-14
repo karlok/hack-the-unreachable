@@ -16,3 +16,6 @@ erl_crash.dump
 
 # Local Claude Code skills (kept out of the public repo)
 /.claude/skills/
+
+# ExUnit tmp_dir output
+/tmp/
