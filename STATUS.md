@@ -25,12 +25,21 @@ Clock: about 12:30 at last update. Submissions due 3:15, demo 3:30. Karlo relays
 - `DoneFirst.Dotenv`: call `DoneFirst.Dotenv.load()` before using the Claude client.
 - `priv/templates/web_direct.json`: 6 sections, 27 items (hosting, browser support, BabylonJS assets, save data, direct sales, launch).
 
+## Smoke test results (done)
+- Flashpoint over OAuth works through `DoneFirst.Panel`. Cached: `cache/panel_smoke.json`, `cache/panel_smoke_answers.json`.
+- Server time: tool_survey about 18 s, create_and_run about 19 s (personas 16 s, responses 3 s). Whole headless run about 106 s and $0.48 of Claude Code tokens. Fetching answers: about 55 s, $0.30.
+- create_and_run returns a job id and must be polled. Its result has NO answers, only counts. Get rows with a second `tool_survey` call (survey_id + brief naming panel_id and run_id). Answers come keyed Q1, Q2.
+- Use the panel id from `artifact_id` (it matches `analytics_scope.panel_id`), not the top-level `panel_id`. Three different ids appear.
+- Personas CAN read as experts: occupation "Independent Browser Game Developer", custom_attributes `primary_game_engine: BabylonJS`. Rest is consumer-style. Responses from gpt-5.4-mini, uncalibrated.
+- Answers were on point: all 3 flagged mobile touch / Safari testing; one flagged CDN cache headers and a rollback plan.
+
 ## Next
-1. **Smoke test** via `DoneFirst.Panel.call("smoke", prompt)`: ask Claude Code to use Flashpoint `tool_survey` to build a 2-question survey, then `panel` `create_and_run` with 3 personas described as "indie developers who ship browser games built on BabylonJS". Record latency, response shape, and whether the personas read as experts (check the returned `persona` records). Cached to `cache/panel_smoke.json`.
-2. **Interview loop**: load core + Roguelite + web_direct. Each turn Claude gets answers so far plus remaining sections, picks the next question or drops sections. Print "dropped N questions: ...".
+1. ~~Smoke test~~ done.
+2. **Interview loop**: built (`DoneFirst.Bank`, `DoneFirst.Interview`, `mix done_first.interview [--facts priv/demo/roguelite_facts.md]`). Bank = 28 sections, 286 items. Tests pass. NOT yet run live: BLOCKED, see Open 4.
 3. DoD draft + stripping rule (side by side), then panel gap review + single-model baseline, then circle back.
 
 ## Open
 1. Organizers' email: confirms the OAuth path?
 2. Can personas be domain experts? Undocumented; the smoke test answers it.
 3. Brief's demo script says "Unity mobile specialists". Fable should reword the routing line and example catch for browser/BabylonJS.
+4. **BLOCKER:** the `.env` API key's org hit its monthly spend limit (429 `enforced_spend_limit_reached`, resets 2026-12-01). Options: a different key, or route `DoneFirst.Claude` through `claude -p` (subscription) like Panel does.
