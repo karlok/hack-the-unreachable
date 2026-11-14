@@ -36,7 +36,11 @@ Clock: about 12:30 at last update. Submissions due 3:15, demo 3:30. Karlo relays
 ## Next
 1. ~~Smoke test~~ done.
 2. **Interview loop**: done and run live. `mix done_first.interview [--facts priv/demo/roguelite_facts.md]` (no --facts = you answer). Bank = 28 sections, 286 items. Batches 2 to 3 questions per call; drops whole sections and single items; prints "dropped N questions: Section (n), ...". Last run: 9 questions, 58 dropped, 37 s on the API. Result in `cache/interview_last.json` (the DoD draft step reads this).
-3. DoD draft + stripping rule (side by side), then panel gap review + single-model baseline, then circle back.
+3. **DoD draft + stripping rule**: done. `mix done_first.draft [--notes priv/demo/roguelite_facts.md] [--fresh]` reads `cache/interview_last.json`, writes 25 to 40 tailored items each with a stripped twin, prints them side by side, prints "What left", and runs a code leak check (allowlist for technical phrases like "depth sorting"). Saves `cache/dod_draft.json` with `panel_view` (27 section headings + 32 stripped items) for the gap review. Rerun replays the file; `--fresh` regenerates (about 60 s).
+   - Edge cases decided: interfaces/providers stay (Stripe, Gamepad API, BabylonJS); "caverns" becomes "levels"; "$8" becomes "single low-price purchase" (Karlo can flip this).
+   - On stage say "zero removed terms reach the panel, checked by code". Do not say "theft-proof": the scan cannot prove the idea is unguessable from structure.
+   - Demo: lead with which whole sections dropped (Multiplayer, etc.), not the percentage (only about 16 to 20% of items drop).
+4. **Next: panel gap review** from `panel_view` (routing line, grid survey, parse), then single-model baseline, then circle back.
 
 ## Open
 1. Organizers' email: confirms the OAuth path?
