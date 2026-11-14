@@ -35,11 +35,11 @@ Clock: about 12:30 at last update. Submissions due 3:15, demo 3:30. Karlo relays
 
 ## Next
 1. ~~Smoke test~~ done.
-2. **Interview loop**: built (`DoneFirst.Bank`, `DoneFirst.Interview`, `mix done_first.interview [--facts priv/demo/roguelite_facts.md]`). Bank = 28 sections, 286 items. Tests pass. NOT yet run live: BLOCKED, see Open 4.
+2. **Interview loop**: done and run live. `mix done_first.interview [--facts priv/demo/roguelite_facts.md]` (no --facts = you answer). Bank = 28 sections, 286 items. Batches 2 to 3 questions per call; drops whole sections and single items; prints "dropped N questions: Section (n), ...". Last run: 9 questions, 58 dropped, 37 s on the API. Result in `cache/interview_last.json` (the DoD draft step reads this).
 3. DoD draft + stripping rule (side by side), then panel gap review + single-model baseline, then circle back.
 
 ## Open
 1. Organizers' email: confirms the OAuth path?
 2. Can personas be domain experts? Undocumented; the smoke test answers it.
 3. Brief's demo script says "Unity mobile specialists". Fable should reword the routing line and example catch for browser/BabylonJS.
-4. **BLOCKER:** the `.env` API key's org hit its monthly spend limit (429 `enforced_spend_limit_reached`, resets 2026-12-01). Options: a different key, or route `DoneFirst.Claude` through `claude -p` (subscription) like Panel does.
+4. ~~API key spend limit~~ resolved: hosts gave a new key (in `.env`). `DoneFirst.Claude` still falls back to `claude -p` automatically on a spend-limit 429 or missing key, or always with `DONE_FIRST_BACKEND=cli` (about 3x slower).

@@ -6,6 +6,11 @@ defmodule DoneFirst.Claude do
   Uses `claude-opus-5-5` with server-side refusal fallbacks enabled
   (`fallbacks: "default"`), so a safety decline is retried on a fallback model
   inside the same call.
+
+  Backends: the API (key from `ANTHROPIC_API_KEY`) or headless Claude Code
+  (`claude -p`, billed to the Claude Code login). Set `DONE_FIRST_BACKEND=cli`
+  to force the CLI. On a missing key or a spend-limit 429 the client switches
+  to the CLI and stays there for the rest of the VM's life.
   """
 
   @url "https://api.anthropic.com/v1/messages"
@@ -19,9 +24,18 @@ defmodule DoneFirst.Claude do
   Options: `:effort` ("low" | "medium" | "high", default "medium"), `:max_tokens`.
   """
   def text(system, prompt, opts \\ []) do
-    with {:ok, body} <- request(system, prompt, %{}, opts) do
-      {:ok, %{text: text_of(body), usage: body["usage"]}}
-    end
+    with_fallback(
+      fn ->
+        with {:ok, body} <- request(system, prompt, %{}, opts) do
+          {:ok, %{text: text_of(body), usage: body["usage"]}}
+        end
+      end,
+      fn ->
+        with {:ok, env} <- cli(system, prompt, nil, opts) do
+          {:ok, %{text: env["result"], usage: env["usage"]}}
+        end
+      end
+    )
   end
 
   @doc """
@@ -32,9 +46,97 @@ defmodule DoneFirst.Claude do
   def json(system, prompt, schema, opts \\ []) do
     format = %{format: %{type: "json_schema", schema: schema}}
 
-    with {:ok, body} <- request(system, prompt, format, opts),
-         {:ok, data} <- Jason.decode(text_of(body)) do
-      {:ok, %{data: data, usage: body["usage"]}}
+    with_fallback(
+      fn ->
+        with {:ok, body} <- request(system, prompt, format, opts),
+             {:ok, data} <- Jason.decode(text_of(body)) do
+          {:ok, %{data: data, usage: body["usage"]}}
+        end
+      end,
+      fn ->
+        case cli(system, prompt, schema, opts) do
+          {:ok, %{"structured_output" => data} = env} when is_map(data) ->
+            {:ok, %{data: data, usage: env["usage"]}}
+
+          {:ok, env} ->
+            {:error, {:cli_no_structured_output, env["result"]}}
+
+          error ->
+            error
+        end
+      end
+    )
+  end
+
+  @doc "The backend the next call will use: `:api` or `:cli`."
+  def backend do
+    cond do
+      System.get_env("DONE_FIRST_BACKEND") == "cli" -> :cli
+      :persistent_term.get({__MODULE__, :backend}, :api) == :cli -> :cli
+      true -> :api
+    end
+  end
+
+  defp with_fallback(api_fun, cli_fun) do
+    if backend() == :cli do
+      cli_fun.()
+    else
+      case api_fun.() do
+        {:error, reason} = error ->
+          if fallback?(reason) do
+            IO.puts(
+              :stderr,
+              "[DoneFirst.Claude] API unavailable (#{inspect(short(reason))}), switching to claude -p"
+            )
+
+            :persistent_term.put({__MODULE__, :backend}, :cli)
+            cli_fun.()
+          else
+            error
+          end
+
+        ok ->
+          ok
+      end
+    end
+  end
+
+  @doc false
+  def fallback?(:missing_anthropic_api_key), do: true
+
+  def fallback?(
+        {:http, 429,
+         %{"error" => %{"details" => %{"error_code" => "enforced_spend_limit_reached"}}}}
+      ),
+      do: true
+
+  def fallback?({:http, status, _}) when status in [401, 403], do: true
+  def fallback?(_), do: false
+
+  defp short({:http, status, _}), do: {:http, status}
+  defp short(reason), do: reason
+
+  # Headless Claude Code with no tools and no MCP servers. ANTHROPIC_API_KEY is
+  # removed from the child env so it bills the Claude Code login, not the key.
+  defp cli(system, prompt, schema, opts) do
+    args =
+      ["-p", prompt, "--output-format", "json", "--system-prompt", system] ++
+        ["--tools", "", "--strict-mcp-config", "--no-session-persistence"] ++
+        ["--model", @model, "--effort", Keyword.get(opts, :effort, "medium")] ++
+        if(schema, do: ["--json-schema", Jason.encode!(schema)], else: [])
+
+    {out, code} =
+      System.cmd("sh", ["-c", ~s(exec "$0" "$@" < /dev/null), "claude" | args],
+        env: [{"ANTHROPIC_API_KEY", nil}]
+      )
+
+    with 0 <- code,
+         {:ok, %{"is_error" => false} = env} <- Jason.decode(out) do
+      {:ok, env}
+    else
+      {:ok, env} -> {:error, {:cli_error, env["result"]}}
+      {:error, _} -> {:error, {:cli_bad_output, out}}
+      exit_code -> {:error, {:cli_exit, exit_code, out}}
     end
   end
 
@@ -58,11 +160,22 @@ defmodule DoneFirst.Claude do
           {"anthropic-beta", @fallback_beta}
         ],
         receive_timeout: 300_000,
-        retry: :transient
+        retry: &retry?/2
       )
       |> handle_response()
     end
   end
+
+  # Retry transient failures, but never a spend-limit 429 (it will not clear).
+  # The retry step runs before the body is decoded, so match on the raw text.
+  defp retry?(_req, %Req.Response{status: 429, body: body}) when is_binary(body),
+    do: not String.contains?(body, "enforced_spend_limit_reached")
+
+  defp retry?(_req, %Req.Response{status: 429, body: body}),
+    do: not fallback?({:http, 429, body})
+
+  defp retry?(_req, %Req.Response{status: status}), do: status in [408, 500, 502, 503, 504, 529]
+  defp retry?(_req, _exception), do: true
 
   defp handle_response(
          {:ok, %Req.Response{status: 200, body: %{"stop_reason" => "refusal"} = body}}
