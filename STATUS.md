@@ -3,6 +3,19 @@
 Brief: `../Done First hackathon brief (v2).md`. Question bank: `priv/bank/` (copied from `../dod-examples/`). Flashpoint notes: `docs/flashpoint-notes.md`.
 Clock: about 12:30 at last update. Submissions due 3:15, demo 3:30. Karlo relays between Claude Code and Fable Desktop.
 
+## Where we are (Nov 15, after the hackathon)
+- Demo done on Nov 14. The Flashpoint sponsor offered engineering help to turn Done First into a real product.
+- Retro written: `../Hackathon retro.md`. It covers what we built, what cost time, presentation notes, next-time checklist and 6 product ideas. The "Your ideas" section is empty and waiting for Karlo's overnight notes.
+- Spotter panel review done (separate from this repo): `/Users/karlok/Downloads/Spotter panel review/`. Start with `summary.md`, then `report.md`. Flashpoint ids are in `ids.md`, so the panels can be re-queried with `chat`.
+- Demo cache in `cache/` is intact. Live copy of the repo: `../done-first-live`.
+
+## Next (post-hackathon)
+1. Fold Karlo's overnight ideas into the retro and pick one idea to bring to the sponsor first (leading candidates: Panel Review for any plan, or Done First for indie pre-launch).
+2. Decide whether to make the repo public (`gh repo edit --visibility public --accept-visibility-change-consequences`).
+3. Write the LinkedIn or X post (use the karlo-voice skill).
+4. Optional: generalize `mix done_first.review` with a `--doc` input so any plan can be reviewed (what we did by hand for Spotter).
+5. Optional: publish the Spotter `report.md` as a private artifact page.
+
 ## Resume here (after restart)
 1. Start Claude Code **from the repo folder**: `cd "/Users/karlok/Project/AI Hackathon Hack the Unreachable/hack-the-unreachable" && claude`. The Flashpoint MCP server is registered for this folder only (local scope).
 2. Run `/mcp`, select `flashpoint`, Authenticate, log in, pick the team. Confirm with `claude mcp list` (should no longer say "Needs authentication").
